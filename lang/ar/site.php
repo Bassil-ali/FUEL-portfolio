@@ -9,6 +9,7 @@ return array(
     'managements'     => 'الإدارات',
     'languages'       => 'اللغات',
     'sliders'         => 'سلايدر',
+    'partners'        => 'شركائنا',
 
     'add'    => 'اضافه',
     'edit'   => 'تعديل',

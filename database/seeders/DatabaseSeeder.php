@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             LanguageSeeder::class,
             SliderSeeder::class,
+            PartnerSeeder::class,
         ]);
 
     }//end of run

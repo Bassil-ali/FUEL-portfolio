@@ -26,6 +26,13 @@
             </a>
         </li>
 
+        <li>
+            <a class="app-menu__item {{ request()->is('*partners*') ? 'active' : '' }}" href="{{ route('admin.partners.index') }}">
+                <i class="app-menu__icon fa fa-home"></i> 
+                <span class="app-menu__label">@lang('site.partners')</span>
+            </a>
+        </li>
+
 
         <li class="treeview {{ request()->is('*managements*') ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">

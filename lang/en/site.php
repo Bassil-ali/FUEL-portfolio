@@ -10,6 +10,7 @@ return array(
     'managements'     => 'Managements',
     'languages'       => 'Languages',
     'sliders'         => 'Sliders',
+    'partners'        => 'Partners',
 
     'logout'          => 'Logout',
     'login'           => 'Login',

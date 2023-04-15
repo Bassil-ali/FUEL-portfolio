@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Managements\RoleController;
 
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\LanguageController;
 
 use App\Http\Controllers\Admin\Setting\SettingController;
@@ -88,6 +89,18 @@ Route::middleware([
     Route::resource('sliders', SliderController::class)->except('show');
     Route::controller(SliderController::class)
         ->prefix('sliders')->name('sliders.')
+        ->group(function () {
+
+            Route::get('data', 'data')->name('data');
+            Route::post('status', 'status')->name('status');
+            Route::post('bulk_delete', 'bulkDelete')->name('bulk_delete');
+
+        });
+
+    //partners
+    Route::resource('partners', PartnerController::class)->except('show');
+    Route::controller(PartnerController::class)
+        ->prefix('partners')->name('partners.')
         ->group(function () {
 
             Route::get('data', 'data')->name('data');
