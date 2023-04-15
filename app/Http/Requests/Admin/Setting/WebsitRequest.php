@@ -15,9 +15,9 @@ class WebsitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'system_name.*' => ['required','min:2','max:30'],
+            'system_name.*' => ['required','min:2','max:255'],
             'system_name'   => ['required'],
-            'image'         => ['required', 'image'],
+            'image'         => ['nullable', 'image'],
         ];
 
     }//end of rules

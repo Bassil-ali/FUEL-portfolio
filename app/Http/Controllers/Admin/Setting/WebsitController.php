@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminRequest;
-use App\Http\Requests\Admin\Setting\ContactRequest;
+use App\Http\Requests\Admin\Setting\WebsitRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\View;
 
@@ -16,7 +16,7 @@ class WebsitController extends Controller
 
     }//end of index
 
-    public function store(ContactRequest $request)
+    public function store(WebsitRequest $request)
     {
         saveTransSetting('system_name', $request->system_name);
         if(request()->file('image')) {

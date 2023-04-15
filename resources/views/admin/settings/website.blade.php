@@ -16,6 +16,8 @@
         @csrf
         @method('post')
 
+        @include('partials._errors')
+
         <div class="row">
 
             <div class="col-12 col-md-4">
@@ -49,7 +51,7 @@
                               {{--email--}}
                             <div class="form-group">
                                 <label>@lang('settings.system_name') <span class="text-danger">*</span></label>
-                                <input type="text" name="system_name[{{ $language->code }}]" class="form-control" value="{{ getTransSetting('system_name', $language->code) }}" required>
+                                <input type="text" name="system_name[{{ $language->code }}]" class="form-control" value="{{ old('system_name.' . $language->code , getTransSetting('system_name', $language->code)) }}" required>
                             </div>
 
                           </div>
