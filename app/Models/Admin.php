@@ -27,4 +27,10 @@ class Admin extends Authenticatable
 
     }//end of get ImagePath Attribute
 
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class, 'id');
+
+    }//end of admin
+
 }//end of model

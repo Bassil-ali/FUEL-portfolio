@@ -1,14 +1,14 @@
-@extends('layouts.admin.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
     <div>
-        <h2>@lang('users.users')</h2>
+        <h2>@lang('site.admins')</h2>
     </div>
 
     <ul class="breadcrumb mt-2">
-        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">@lang('site.home')</a></li>
-        <li class="breadcrumb-item">@lang('users.users')</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">@lang('site.home')</a></li>
+        <li class="breadcrumb-item">@lang('site.admins')</li>
     </ul>
 
     <div class="row">
@@ -21,16 +21,19 @@
 
                     <div class="col-md-12">
 
-                        @if (auth()->user()->hasPermission('read_users'))
-                            <a href="{{ route('admin.users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
-                        @endif
-
-                        @if (auth()->user()->hasPermission('delete_users'))
-                            <form method="post" action="{{ route('admin.users.bulk_delete') }}" style="display: inline-block;">
+                    	@if(permissionAdmin('create-admins'))
+                            <a href="{{ route('admin.managements.admins.create') }}" class="btn btn-primary">
+                            	<i class="fa fa-plus"></i> @lang('site.create')
+                            </a>
+						@endif
+                        @if(permissionAdmin('delete-admins'))
+                            <form method="post" action="{{ route('admin.managements.admins.bulk_delete') }}" style="display: inline-block;">
                                 @csrf
-                                @method('delete')
+                                @method('post')
                                 <input type="hidden" name="record_ids" id="record-ids">
-                                <button type="submit" class="btn btn-danger" id="bulk-delete" disabled="true"><i class="fa fa-trash"></i> @lang('site.bulk_delete')</button>
+                                <button type="submit" class="btn btn-danger" id="bulk-delete" disabled="true"><i class="fa fa-trash"></i> 
+                            	    @lang('site.bulk_delete')
+                            	</button>
                             </form><!-- end of form -->
                         @endif
 
@@ -54,7 +57,7 @@
 
                         <div class="table-responsive">
 
-                            <table class="table datatable" id="users-table" style="width: 100%;">
+                            <table class="table datatable" id="data-table" style="width: 100%;">
                                 <thead>
                                 <tr>
                                     <th>
@@ -65,10 +68,11 @@
                                             </label>
                                         </div>
                                     </th>
-                                    <th>@lang('users.f_name')</th>
-                                    <th>@lang('users.l_name')</th>
-                                    <th>@lang('users.phone')</th>
-                                    <th>@lang('users.otp')</th>
+                                    <th>@lang('site.name')</th>
+                                    <th>@lang('site.email')</th>
+                                    <th>@lang('site.admins')</th>
+                                    <th>@lang('site.image')</th>
+                                    <th>@lang('site.status')</th>
                                     <th>@lang('site.created_at')</th>
                                     <th>@lang('site.action')</th>
                                 </tr>
@@ -93,25 +97,26 @@
 
     <script>
 
-        let usersTable = $('#users-table').DataTable({
+        let dataTable = $('#data-table').DataTable({
             dom: "tiplr",
             scrollY: '500px',
             sScrollX: "100%",
             scrollCollapse: true,
             serverSide: true,
             processing: true,
-            "language": {
-                "url": "{{ asset('admin_assets/datatable-lang/' . app()->getLocale() . '.json') }}"
+            language: {
+                url: "{{ asset('admin_assets/datatable-lang/' . app()->getLocale() . '.json') }}"
             },
             ajax: {
-                url: '{{ route('admin.users.data') }}',
+                url: '{{ route('admin.managements.admins.data') }}',
             },
             columns: [
                 {data: 'record_select', name: 'record_select', searchable: false, sortable: false, width: '1%'},
-                {data: 'f_name', name: 'f_name'},
-                {data: 'l_name', name: 'l_name'},
-                {data: 'phone', name: 'phone'},
-                {data: 'OTP', name: 'OTP'},
+                {data: 'name', name: 'name'},
+                {data: 'email', name: 'email'},
+                {data: 'admin', name: 'admin'},
+                {data: 'image', name: 'image'},
+                {data: 'status', name: 'status'},
                 {data: 'created_at', name: 'created_at', searchable: false},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false, width: '20%'},
             ],
@@ -125,8 +130,36 @@
         });
 
         $('#data-table-search').keyup(function () {
-            usersTable.search(this.value).draw();
-        })
+            dataTable.search(this.value).draw();
+        });
+
+        $(document).on('change', '.status', function (e) {
+            e.preventDefault();
+
+            let url    = "{{ route('admin.managements.admins.status') }}";
+            let method = 'post';
+            let id     = $(this).data('id');
+
+            $.ajax({
+                url: url,
+                data: {id: id},
+                method: method,
+                success: function (response) {
+
+                    $('.datatable').DataTable().ajax.reload();
+
+                    new Noty({
+                        layout: 'topRight',
+                        type: 'alert',
+                        text: response,
+                        killer: true,
+                        timeout: 2000,
+                    }).show();
+                },
+
+            });//end of ajax call
+
+        });//end of delete
     </script>
 
 @endpush

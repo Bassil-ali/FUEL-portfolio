@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Admin;
+namespace App\Http\Requests\Admin\Managements\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -9,7 +9,15 @@ class AdminRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return false;
+        if (in_array(request()->method(), ['PUT', 'PATCH'])) {
+            
+            return permissionAdmin('update-admins');
+
+        } else {
+
+            return permissionAdmin('create-admins');
+
+        }//end of if
 
     }//end of authorize
 

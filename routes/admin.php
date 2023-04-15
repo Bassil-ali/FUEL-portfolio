@@ -35,7 +35,7 @@ Route::middleware([
 
                 Route::get('data', 'data')->name('data');
                 Route::post('status', 'status')->name('status');
-                Route::delete('bulk_delete', 'bulkDelete')->name('bulk_delete');
+                Route::post('bulk_delete', 'bulkDelete')->name('bulk_delete');
 
             });
         Route::resource('admins', AdminController::class);
