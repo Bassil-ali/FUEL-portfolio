@@ -17,7 +17,10 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        saveTransSetting('system_name', $request->system_name);
+        saveTransSetting('contact_email', $request->email);
+        saveTransSetting('contact_phone', $request->phone);
+        saveTransSetting('contact_fax', $request->fax);
+        saveTransSetting('contact_address', $request->address);
 
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->back();

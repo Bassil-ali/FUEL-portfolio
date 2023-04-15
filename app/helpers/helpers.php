@@ -50,6 +50,7 @@ if (!function_exists('isInvalid')) {
 
  }//end of exists
 
+//////////////////////////////// Setting //////////////////////
 
  if(!function_exists('getSetting')) {
     
@@ -62,6 +63,20 @@ if (!function_exists('isInvalid')) {
             $setting = \App\Models\Setting::create(['key' => $key]);
             return '';
         }
+
+    }//en dof fun
+
+ }//end of getSetting
+
+ if(!function_exists('saveSetting')) {
+    
+    function saveSetting($key, $value)
+    {
+        $setting = \App\Models\Setting::where('key', $key)->first();
+        if(!$setting) {
+            return $setting = \App\Models\Setting::create(['key' => $key]);
+        }
+        return $setting->update(['value' => $value]);
 
     }//en dof fun
 

@@ -63,7 +63,7 @@
         <li class="treeview {{ request()->is('*settings*') ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-user-circle"></i>
-                <span class="app-menu__label">@lang('site.settings')</span>
+                <span class="app-menu__label">@lang('settings.settings')</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">

@@ -3,6 +3,7 @@
 return array(
     
     'home'            => 'home',
+    'settings     '   => 'Settings',
     'admins'          => 'Admins',
     'roles'           => 'Roles',
     'categories'      => 'Categories',
@@ -66,4 +67,8 @@ return array(
     'name'        => 'Name',
     'image'       => 'Image',
     'description' => 'Description',
+    'phone'       => 'Phone',
+    'email'       => 'Email',
+    'fax'         => 'Fax',
+    'address'     => 'Address',
 );

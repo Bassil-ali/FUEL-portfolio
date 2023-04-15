@@ -2,6 +2,7 @@
 
 return array(
     'home'            => 'الرئيسية',
+    'settings     '   => 'الاعدادات',
     'admins'          => 'المشرفين',
     'roles'           => 'الصلاحيات',
     'categories'      => 'الاقسام',
@@ -47,4 +48,8 @@ return array(
     'status'      => 'الحالة',
     'image'       => 'الصوره',
     'description' => 'الوصف',
+    'phone'       => 'رقم الهاتف',
+    'email'       => 'الايميل',
+    'fax'         => 'فاكس',
+    'address'     => 'العنوان',
 );

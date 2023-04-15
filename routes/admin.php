@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\LanguageController;
 
 use App\Http\Controllers\Admin\Setting\SettingController;
+use App\Http\Controllers\Admin\Setting\WebsitController;
+use App\Http\Controllers\Admin\Setting\ContactController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
@@ -68,17 +70,17 @@ Route::middleware([
     Route::name('settings.')->prefix('settings')->group(function() {
 
         //settings
-        Route::controller(SettingController::class)->group(function () {
+        Route::controller(ContactController::class)->group(function () {
 
             Route::get('contact', 'index')->name('contact');
             Route::post('contact/store', 'store')->name('contact.store');
 
         });
 
-        Route::controller(SettingController::class)->group(function () {
+        Route::controller(WebsitController::class)->group(function () {
 
             Route::get('websit', 'index')->name('websit');
-            Route::post('websit/store', 'store')->name('website.store');
+            Route::post('websit/store', 'store')->name('websit.store');
 
         });
 

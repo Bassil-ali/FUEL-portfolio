@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminRequest;
 use App\Http\Requests\Admin\Setting\ContactRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\View;
 
 class WebsitController extends Controller
@@ -18,6 +19,14 @@ class WebsitController extends Controller
     public function store(ContactRequest $request)
     {
         saveTransSetting('system_name', $request->system_name);
+        if(request()->file('image')) {
+
+            Storage::disk('public')->delete(getSetting('system_image'));
+
+            $image = request()->file('image')->store('settings', 'public');
+
+            saveSetting('system_image', $image);
+        }
 
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->back();
