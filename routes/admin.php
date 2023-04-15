@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Managements\AdminController;
 use App\Http\Controllers\Admin\Managements\RoleController;
+use App\Http\Controllers\Admin\Managements\LanguageController;
 
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PartnerController;
-use App\Http\Controllers\Admin\LanguageController;
 
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Setting\WebsitController;

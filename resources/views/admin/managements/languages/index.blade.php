@@ -1,14 +1,14 @@
-@extends('layouts.admin.app')
+@extends('admin.layouts.app')
 
 @section('content')
 
     <div>
-        <h2>@lang('admins.languages')</h2>
+        <h2>@lang('site.languages')</h2>
     </div>
 
     <ul class="breadcrumb mt-2">
-        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">@lang('site.home')</a></li>
-        <li class="breadcrumb-item">@lang('admins.languages')</li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">@lang('site.home')</a></li>
+        <li class="breadcrumb-item">@lang('site.languages')</li>
     </ul>
 
     <div class="row">
@@ -21,16 +21,19 @@
 
                     <div class="col-md-12">
 
-                        @if (auth()->user()->hasPermission('read_admins'))
-                            <a href="{{ route('admin.languages.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.create')</a>
+                        @if(permissionAdmin('create-language'))
+                            <a href="{{ route('admin.managements.languages.create') }}" class="btn btn-primary">
+                                <i class="fa fa-plus"></i> @lang('site.create')
+                            </a>
                         @endif
-
-                        @if (auth()->user()->hasPermission('delete_admins'))
-                            <form method="post" action="{{ route('admin.languages.bulk_delete') }}" style="display: inline-block;">
+                        @if(permissionAdmin('delete-language'))
+                            <form method="post" action="{{ route('admin.managements.languages.bulk_delete') }}" style="display: inline-block;">
                                 @csrf
-                                @method('delete')
+                                @method('post')
                                 <input type="hidden" name="record_ids" id="record-ids">
-                                <button type="submit" class="btn btn-danger" id="bulk-delete" disabled="true"><i class="fa fa-trash"></i> @lang('site.bulk_delete')</button>
+                                <button type="submit" class="btn btn-danger" id="bulk-delete" disabled="true"><i class="fa fa-trash"></i> 
+                                    @lang('site.bulk_delete')
+                                </button>
                             </form><!-- end of form -->
                         @endif
 
@@ -46,19 +49,6 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <select id="role" class="form-control select2">
-                                    <option value="">@lang('site.all') @lang('roles.roles')</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
                 </div><!-- end of row -->
 
                 <div class="row">
@@ -67,7 +57,7 @@
 
                         <div class="table-responsive">
 
-                            <table class="table datatable" id="admins-table" style="width: 100%;">
+                            <table class="table datatable" id="data-table" style="width: 100%;">
                                 <thead>
                                 <tr>
                                     <th>
@@ -78,10 +68,11 @@
                                             </label>
                                         </div>
                                     </th>
-                                    <th>@lang('site.DT_RowIndex')</th>
-                                    <th>@lang('users.name')</th>
-                                    <th>@lang('users.email')</th>
-                                    <th>@lang('roles.roles')</th>
+                                    <th>@lang('site.name')</th>
+                                    <th>@lang('site.code')</th>
+                                    <th>@lang('site.default')</th>
+                                    <th>@lang('site.dir')</th>
+                                    <th>@lang('site.status')</th>
                                     <th>@lang('site.created_at')</th>
                                     <th>@lang('site.action')</th>
                                 </tr>
@@ -106,34 +97,30 @@
 
     <script>
 
-        let role;
-
-        let adminsTable = $('#admins-table').DataTable({
+        let dataTable = $('#data-table').DataTable({
             dom: "tiplr",
             scrollY: '500px',
-            scrollCollapse: true,
             sScrollX: "100%",
+            scrollCollapse: true,
             serverSide: true,
             processing: true,
-            "language": {
-                "url": "{{ asset('admin_assets/datatable-lang/' . app()->getLocale() . '.json') }}"
+            language: {
+                url: "{{ asset('admin_assets/datatable-lang/' . app()->getLocale() . '.json') }}"
             },
             ajax: {
-                url: '{{ route('admin.admins.data') }}',
-                data: function (d) {
-                    d.role_id = role;
-                }
+                url: '{{ route('admin.managements.languages.data') }}',
             },
             columns: [
                 {data: 'record_select', name: 'record_select', searchable: false, sortable: false, width: '1%'},
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                 {data: 'name', name: 'name'},
-                {data: 'email', name: 'email'},
-                {data: 'roles', name: 'roles'},
+                {data: 'code', name: 'code'},
+                {data: 'default', name: 'default'},
+                {data: 'dir', name: 'dir'},
+                {data: 'status', name: 'status'},
                 {data: 'created_at', name: 'created_at', searchable: false},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false, width: '20%'},
             ],
-            order: [[4, 'desc']],
+            order: [[2, 'desc']],
             drawCallback: function (settings) {
                 $('.record__select').prop('checked', false);
                 $('#record__select-all').prop('checked', false);
@@ -143,13 +130,36 @@
         });
 
         $('#data-table-search').keyup(function () {
-            adminsTable.search(this.value).draw();
-        })
+            dataTable.search(this.value).draw();
+        });
 
-        $('#role').on('change', function () {
-            role = this.value;
-            adminsTable.ajax.reload();
-        })
+        $(document).on('change', '.status', function (e) {
+            e.preventDefault();
+
+            let url    = "{{ route('admin.managements.languages.status') }}";
+            let method = 'post';
+            let id     = $(this).data('id');
+
+            $.ajax({
+                url: url,
+                data: {id: id},
+                method: method,
+                success: function (response) {
+
+                    $('.datatable').DataTable().ajax.reload();
+
+                    new Noty({
+                        layout: 'topRight',
+                        type: 'alert',
+                        text: response,
+                        killer: true,
+                        timeout: 2000,
+                    }).show();
+                },
+
+            });//end of ajax call
+
+        });//end of delete
     </script>
 
 @endpush

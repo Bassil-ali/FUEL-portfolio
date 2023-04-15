@@ -24,7 +24,7 @@ class PermissionsDemoSeeder extends Seeder
             'guard_name' => 'admin',
         ]);
 
-        $permissions = ['home','admins','roles','settings','sliders', 'partners'];
+        $permissions = ['home','admins','roles','settings','sliders', 'partners', 'languages'];
 
         foreach ($permissions as $data) {
 
