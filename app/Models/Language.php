@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Language extends Model
 {
     use HasFactory;
-}
+
+    protected $fillable = ['name', 'default', 'code', 'dir', 'status'];
+
+}//en dof model

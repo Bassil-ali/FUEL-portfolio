@@ -6,5 +6,6 @@ return [
     'system_name' => 'System Name',
     'settings'    => 'Settings',
     'contact'     => 'Contact Us',
+    'achievement' => 'Achievement',
 
 ];

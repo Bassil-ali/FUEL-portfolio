@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
 
         $admin->assignRole('super_admin');
 
-        \App\Models\Admin::factory(20)->create();
+        \App\Models\Admin::factory(8)->create();
 
     }//end of run
 

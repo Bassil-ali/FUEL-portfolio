@@ -13,6 +13,7 @@ class AdminFactory extends Factory
             'email'             => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password'          => bcrypt('password'), // password
+            'admin_id'          => \App\Models\Admin::factory(),
         ];
 
     }//end of run

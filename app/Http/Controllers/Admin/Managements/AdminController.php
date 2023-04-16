@@ -25,9 +25,9 @@ class AdminController extends Controller
     public function data()
     {
         $permissions = [
-            'status' => 'status-admins',
-            'update' => 'update-admins',
-            'delete' => 'delete-admins',
+            'status' => permissionAdmin('status-admins'),
+            'update' => permissionAdmin('update-admins'),
+            'delete' => permissionAdmin('delete-admins'),
         ];
 
         $admin = Admin::query();
@@ -68,15 +68,18 @@ class AdminController extends Controller
 
     public function store(AdminRequest $request)
     {
-        $requestData = request()->except('image');
+        $requestData = request()->except('image', 'password', 'password_confirmation');
 
         if(request()->file('image')) {
 
             $requestData['image'] = request()->file('image')->store('admins', 'public');
 
         }
+        $requestData['password'] = bcrypt(request()->password);
 
-        Admin::create($requestData);
+        $admin = Admin::create($requestData);
+
+        $admin->assignRole('super_admin');
 
         session()->flash('success', __('site.added_successfully'));
         return redirect()->route('admin.managements.admins.index');
@@ -89,19 +92,22 @@ class AdminController extends Controller
             return abort(403);
         }
 
-        return view('admin.managements.admins.edit', compact('slider'));
+        return view('admin.managements.admins.edit', compact('admin'));
 
     }//end of edit
 
     public function update(AdminRequest $request, Admin $admin)
     {
-        $requestData = request()->except('image');
+        $requestData = request()->except('image', 'password', 'password_confirmation');
         if(request()->file('image')) {
 
             Storage::disk('public')->delete($admin->image);
 
             $requestData['image'] = request()->file('image')->store('admins', 'public');
 
+        }
+        if (request()->password) {
+            $requestData['password'] = bcrypt(request()->password);
         }
         $admin->update($requestData);
 
@@ -112,6 +118,9 @@ class AdminController extends Controller
 
     public function destroy(Admin $admin)
     {
+        if(!permissionAdmin('delete-admins')) {
+            return abort(403);
+        }
         Storage::disk('public')->delete($admin->image);
         $admin->delete();
 

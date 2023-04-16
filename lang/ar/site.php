@@ -52,4 +52,7 @@ return array(
     'email'       => 'الايميل',
     'fax'         => 'فاكس',
     'address'     => 'العنوان',
+
+    'password'                 => 'كلمه المرور',
+    'password_confirmation'    => 'اعاده كلمه المرور',
 );

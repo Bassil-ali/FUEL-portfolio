@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Managements\Admin;
+namespace App\Http\Requests\Admin\Managements\Language;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -11,11 +11,11 @@ class AdminRequest extends FormRequest
     {
         if (in_array(request()->method(), ['PUT', 'PATCH'])) {
             
-            return permissionAdmin('update-admins');
+            return permissionAdmin('update-languages');
 
         } else {
 
-            return permissionAdmin('create-admins');
+            return permissionAdmin('create-languages');
 
         }//end of if
 
@@ -33,7 +33,7 @@ class AdminRequest extends FormRequest
             
             $admin = request()->route()->parameter('admin');
 
-            $rules['email']                  = ['required','email','min:2','max:30', Rule::unique('admins')->ignore($admin->id)];
+            $rules['email']                  = ['required','email','min:2','max:30', Rule::unique('languages')->ignore($admin->id)];
             $rules['image']                  = ['nullable','image'];
             $rules['password']               = ['nullable','min:6','max:30'];
             $rules['password_confirmation']  = ['nullable', 'same:password','min:6','max:30'];

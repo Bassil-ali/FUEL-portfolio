@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
 
-            $table->foreignId('admin_id')->constrained();
+            $table->foreignId('admin_id')->constrained()->onDelete('cascade');
 
             $table->softDeletes();
             $table->timestamps();

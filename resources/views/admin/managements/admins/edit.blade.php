@@ -3,17 +3,17 @@
 @section('content')
 
     <div>
-        <h2>@lang('site.partners')</h2>
+        <h2>@lang('site.admins')</h2>
     </div>
 
     <ul class="breadcrumb mt-2">
         <li class="breadcrumb-item"><a class="back-page" href="{{ route('admin.index') }}">@lang('site.home')</a></li>
-        <li class="breadcrumb-item"><a class="back-page" href="{{ route('admin.partners.index') }}">@lang('site.partners')</a></li>
+        <li class="breadcrumb-item"><a class="back-page" href="{{ route('admin.managements.admins.index') }}">@lang('site.admins')</a></li>
         <li class="breadcrumb-item">@lang('site.edit')</li>
     </ul>
 
 
-    <form method="post" action="{{ route('admin.partners.update', $slider->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('admin.managements.admins.update', $admin->id) }}" enctype="multipart/form-data">
         @csrf
         @method('put')
 
@@ -25,7 +25,7 @@
 
                 <div class="tile shadow">
 
-                    @include('admin.dataTables.image_privew', ['imagePath' => $slider->image_path])
+                    @include('admin.dataTables.image_privew', ['imagePath' => $admin->image_path])
 
                 </div><!-- end of tile -->
 
@@ -35,54 +35,48 @@
 
                 <div class="tile shadow">
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                        @foreach(getLanguages() as $language)
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="{{ $language->code }}-tab" data-toggle="tab" data-target="#{{ $language->code }}" type="button" role="tab" aria-controls="{{ $language->code }}" aria-selected="{{ $loop->first ? true : false }}">
-                                {{ $language->name }}
-                            </button>
-                        </li>
-                        @endforeach
-
-                    </ul>
-
-                    <div class="tab-content" id="myTabContent">
-                        @foreach(getLanguages() as $language)
-                          <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="{{ $language->code }}" role="tabpanel" aria-labelledby="{{ $language->code }}-tab">
-                              {{--email--}}
-                            <div class="form-group">
-                                <label>@lang('site.title') <span class="text-danger">{{ $loop->first ? '*' : '' }}</span></label>
-                                <input type="text" name="title[{{ $language->code }}]" class="form-control @error('title.' . $language->code) is-invalid @enderror" 
-                                value="{{ old('title.'. $language->code, $slider->getTranslations('title')[$language->code] ?? '') }}">
-                                @error('title.' . $language->code)
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            {{-- claim_description --}}
-                            <div class="form-group">
-                                <label>@lang('site.description') <span class="text-danger">{{ $loop->first ? '*' : '' }}</span></label>
-                                <textarea id="description-{{ $language->code }}" class="form-control @error('description.' . $language->code . '.' . $loop->index) is-invalid @enderror" name="description[{{ $language->code }}]" rows="5">{{ old('description.' . $language->code, $slider->getTranslations('description')[$language->code] ?? '') }}</textarea>
-                                @error('description.' . $language->code . '.' . $loop->index)
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                          </div>
-                        @endforeach
+                    {{--name--}}
+                    <div class="form-group">
+                        <label>@lang('site.name') <span class="text-danger">*</span></label>
+                        <input type="text" name="name" autofocus class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $admin->name) }}">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
-                   {{--status--}}
-                    <label class="form-check-label" for="status">@lang('site.status')</label>
-                    <div class="form-group ml-3">
-                        <div class="form-check form-switch">
-                          <input class="form-check-input" id="status" type="checkbox" name="status" value="true" {{ old('status', $slider->status) ? 'checked' : '' }}>
-                        </div>
+                    {{--email--}}
+                    <div class="form-group">
+                        <label>@lang('site.email') <span class="text-danger">*</span></label>
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $admin->email) }}">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    {{--password--}}
+                    <div class="form-group">
+                        <label>@lang('site.password') <span class="text-danger">*</span></label>
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    {{--password_confirmation--}}
+                    <div class="form-group">
+                        <label>@lang('site.password_confirmation') <span class="text-danger">*</span></label>
+                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror">
+                        @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">

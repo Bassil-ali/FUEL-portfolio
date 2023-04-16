@@ -1,10 +1,10 @@
-@if(permissionAdmin($permissions['update']))
+@if($permissions['update'])
     <a href="{{ $routeEdit }}" class="btn btn-warning btn-sm">
         <i class="fa fa-edit"></i> @lang('site.edit')
     </a>
 @endif
 
-@if(permissionAdmin($permissions['delete']))
+@if($permissions['delete'])
     <form action="{{ $routeDelete }}" class="my-1 my-xl-0" method="post" style="display: inline-block;">
         @csrf
         @method('delete')

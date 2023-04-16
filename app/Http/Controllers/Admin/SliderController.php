@@ -25,9 +25,9 @@ class SliderController extends Controller
     public function data()
     {
         $permissions = [
-            'status' => 'status-sliders',
-            'update' => 'update-sliders',
-            'delete' => 'delete-sliders',
+            'status' => permissionAdmin('status-sliders'),
+            'update' => permissionAdmin('update-sliders'),
+            'delete' => permissionAdmin('delete-sliders'),
         ];
 
         $slider = Slider::query();

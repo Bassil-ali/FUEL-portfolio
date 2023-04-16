@@ -25,9 +25,9 @@ class LanguageController extends Controller
     public function data()
     {
         $permissions = [
-            'status' => 'status-languages',
-            'update' => 'update-languages',
-            'delete' => 'delete-languages',
+            'status' => permissionAdmin('status-languages'),
+            'update' => permissionAdmin('update-languages'),
+            'delete' => permissionAdmin('delete-languages'),
         ];
 
         $language = Language::query();
@@ -37,19 +37,19 @@ class LanguageController extends Controller
             ->addColumn('created_at', fn (Language $language) => $language?->created_at?->format('Y-m-d'))
             ->addColumn('admin', fn (Language $language) => $language->admin?->name)
             ->addColumn('actions', function(Language $language) use($permissions) {
-                $routeEdit   = route('admin.managements.languages.edit', $language->id);
-                $routeDelete = route('admin.managements.languages.destroy', $language->id);
-                return view('admin.dataTables.actions', compact('permissions', 'routeEdit', 'routeDelete'));
+                if(!$language->default) {
+                    $routeEdit   = route('admin.managements.languages.edit', $language->id);
+                    $routeDelete = route('admin.managements.languages.destroy', $language->id);
+                    return view('admin.dataTables.actions', compact('permissions', 'routeEdit', 'routeDelete'));
+                }
             })
             ->addColumn('status', function(Language $language) use($permissions) {
                 $models = $language;
                 $route  = route('admin.managements.languages.status');
                 return view('admin.dataTables.status', compact('models', 'permissions'));
             })
-            ->addColumn('default', function(Language $language) use($permissions) {
-                $models = $language;
-                $route  = route('admin.managements.languages.status');
-                return view('admin.dataTables.status', compact('models', 'permissions'));
+            ->addColumn('default', function(Language $language) {
+                return view('admin.managements.languages.data_tables.check_default', compact('language'));
             })
             ->editColumn('image', function(Language $language) {
                 $models = $language;
@@ -117,6 +117,10 @@ class LanguageController extends Controller
 
     public function destroy(Language $language)
     {
+        if($language->default) {
+            session()->flash('success', __('site.deleted_successfully'));
+            return response(__('site.deleted_successfully'));
+        }
         Storage::disk('public')->delete($language->image);
         $language->delete();
 
@@ -127,6 +131,11 @@ class LanguageController extends Controller
 
     public function bulkDelete(DeleteRequest $request)
     {
+        $languages = Language::find(json_decode(request()->record_ids))->where('default', 1)->first();
+        if($languages) {
+            session()->flash('success', __('site.deleted_successfully'));
+            return response(__('site.deleted_successfully'));
+        }
         $images = Language::find(json_decode(request()->record_ids))->pluck('image')->toArray();
         Storage::disk('public')->delete($images);
         Language::destroy(json_decode(request()->record_ids));
@@ -140,6 +149,17 @@ class LanguageController extends Controller
     {
         $language = Language::find($request->id);
         $language->update(['status' => !$language->status]);
+
+        session()->flash('success', __('site.updated_successfully'));
+        return response(__('site.updated_successfully'));
+        
+    }//end of status
+
+    public function changeDefault(StatusRequest $request)
+    {
+        $languages = Language::all();
+        $languages->each(fn ($language) => $language->update(['default' => 0]));
+        Language::find($request->id)->update(['default' => 1]);
 
         session()->flash('success', __('site.updated_successfully'));
         return response(__('site.updated_successfully'));

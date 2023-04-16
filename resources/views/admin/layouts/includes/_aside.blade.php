@@ -3,7 +3,7 @@
 
 <aside class="app-sidebar" style="::-webkit-scrollbar-track {box-shadow: inset 0 0 5px grey;border-radius: 10px;}">
     <div class="app-sidebar__user">
-        <img class="app-sidebar__user-avatar" src="{{ auth()->user()->image_path }}" alt="User Image">
+        <img class="app-sidebar__user-avatar" src="{{ auth('admin')->user()->image_path }}" alt="User Image">
         <div>
             <h2 class="app-sidebar__user-name">{{ auth('admin')->user()->fiest_name }}</p>
             {{-- <p class="app-sidebar__user-designation">{{ auth()->user()->roles->first()->name }}</p> --}}
@@ -42,18 +42,18 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item" href="{{ route('admin.managements.admins.index') }}">
-                        <i class="icon fa fa-circle-o"></i>@lang('site.admins')
+                    <a class="treeview-item {{ request()->is('*admins*') ? 'active' : '' }}" href="{{ route('admin.managements.admins.index') }}">
+                        <i class="icon fa fa-users"></i>@lang('site.admins')
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="{{ route('admin.managements.roles.index') }}">
-                        <i class="icon fa fa-circle-o"></i>@lang('site.roles')
+                    <a class="treeview-item {{ request()->is('*roles*') ? 'active' : '' }}" href="{{ route('admin.managements.roles.index') }}">
+                        <i class="icon fa fa-settings"></i>@lang('site.roles')
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="{{ route('admin.managements.languages.index') }}">
-                        <i class="icon fa fa-circle-o"></i>@lang('site.languages')
+                    <a class="treeview-item {{ request()->is('*languages*') ? 'active' : '' }}" href="{{ route('admin.managements.languages.index') }}">
+                        <i class="icon fa fa-flag"></i>@lang('site.languages')
                     </a>
                 </li>
             </ul>
@@ -68,13 +68,18 @@
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item" href="{{ route('admin.settings.websit') }}">
-                        <i class="icon fa fa-circle-o"></i>@lang('settings.websit')
+                    <a class="treeview-item {{ request()->is('*websit*') ? 'active' : '' }}" href="{{ route('admin.settings.websit') }}">
+                        <i class="icon fa fa-circle"></i>@lang('settings.websit')
                     </a>
                 </li>
                 <li>
-                    <a class="treeview-item" href="{{ route('admin.settings.contact') }}">
-                        <i class="icon fa fa-circle-o"></i>@lang('settings.contact')
+                    <a class="treeview-item {{ request()->is('*contact*') ? 'active' : '' }}" href="{{ route('admin.settings.contact') }}">
+                        <i class="icon fa fa-circle"></i>@lang('settings.contact')
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item {{ request()->is('*achievement*') ? 'active' : '' }}" href="{{ route('admin.settings.achievement') }}">
+                        <i class="icon fa fa-circle"></i>@lang('settings.achievement')
                     </a>
                 </li>
             </ul>

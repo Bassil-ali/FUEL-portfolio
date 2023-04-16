@@ -71,4 +71,7 @@ return array(
     'email'       => 'Email',
     'fax'         => 'Fax',
     'address'     => 'Address',
+
+    'password'                 => 'Password',
+    'password_confirmation'    => 'Password Confirmation',
 );

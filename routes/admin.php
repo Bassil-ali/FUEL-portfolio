@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Setting\WebsitController;
 use App\Http\Controllers\Admin\Setting\ContactController;
+use App\Http\Controllers\Admin\Setting\AchievementController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
@@ -59,6 +60,7 @@ Route::middleware([
 
                 Route::get('data', 'data')->name('data');
                 Route::post('status', 'status')->name('status');
+                Route::post('default', 'changeDefault')->name('default');
                 Route::delete('bulk_delete', 'bulkDelete')->name('bulk_delete');
 
             });
@@ -81,6 +83,13 @@ Route::middleware([
 
             Route::get('websit', 'index')->name('websit');
             Route::post('websit/store', 'store')->name('websit.store');
+
+        });
+
+        Route::controller(AchievementController::class)->group(function () {
+
+            Route::get('achievement', 'index')->name('achievement');
+            Route::post('achievement/store', 'store')->name('achievement.store');
 
         });
 

@@ -25,9 +25,9 @@ class PartnerController extends Controller
     public function data()
     {
         $permissions = [
-            'status' => 'status-partners',
-            'update' => 'update-partners',
-            'delete' => 'delete-partners',
+            'status' => permissionAdmin('status-partners'),
+            'update' => permissionAdmin('update-partners'),
+            'delete' => permissionAdmin('delete-partners'),
         ];
 
         $partner = Partner::query();

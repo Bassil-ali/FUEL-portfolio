@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('image')->default('default.png');
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('status')->default(0);
+
+            $table->foreignId('admin_id')->nullable()->constrained()->onDelete('cascade');
             
             $table->softDeletes();
             $table->timestamps();
