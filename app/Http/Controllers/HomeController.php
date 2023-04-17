@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Language;
 use App\Models\Slider;
+use App\Models\Partner;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $sliders = Slider::all();
+        $sliders  = Slider::all();
+        $partners = Partner::all();
 
-        return view('site.index.index', compact('sliders'));
+        return view('site.index.index', compact('sliders', 'partners'));
 
     }//end of index
 
