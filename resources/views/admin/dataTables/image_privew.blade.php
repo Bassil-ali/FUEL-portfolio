@@ -2,12 +2,12 @@
 
     <div class="input-group">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="formFile" name="image" onchange="preview()" {{ !empty($imagePath) ? '' : 'required' }}>
+            <input type="file" class="custom-file-input" id="formFile" name="image" onchange="preview()" {{ !empty($imagePath) ? '' : '' }}>
             <label class="custom-file-label" for="formFile">Choose @lang('site.image')</label>
         </div>
         <div class="input-group-append">
-            <a onclick="clearImage()" class="btn btn-outline-secondary text-dark" id="remove-image">
-                remove image
+            <a onclick="clearImage()" class="btn btn-outline-danger text-dark" id="remove-image">
+                <i class="fa fa-trash fa-lg"></i>
             </a>
         </div>
     </div>

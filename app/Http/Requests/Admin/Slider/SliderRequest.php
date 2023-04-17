@@ -35,6 +35,17 @@ class SliderRequest extends FormRequest
 
     }//en dof rules
 
+    public function attributes(): array
+    {
+        return [
+            'title.*'       => trans('site.title'),
+            'description.*' => trans('site.description'),
+            'image'         => trans('site.image'),
+            'status'        => trans('site.status'),
+        ];
+
+    }//end of attributes
+
     protected function prepareForValidation()
     {
         return request()->merge([

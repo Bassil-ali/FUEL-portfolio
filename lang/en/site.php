@@ -27,6 +27,8 @@ return array(
     'action' => 'Action',
     'search' => 'Search',
     'save'   => 'Save',
+    'items'  => 'Items',
+    'item'   => 'Item',
 
     'no_data_found'        => 'Sorry No Data found 😴',
     'added_successfully'   => 'Record Added Successfully 🤗',

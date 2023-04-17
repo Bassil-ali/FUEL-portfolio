@@ -65,8 +65,8 @@
                             {{-- claim_description --}}
                             <div class="form-group">
                                 <label>@lang('site.description') <span class="text-danger">{{ $loop->first ? '*' : '' }}</span></label>
-                                <textarea id="description-{{ $language->code }}" class="form-control @error('description.' . $language->code . '.' . $loop->index) is-invalid @enderror" name="description[{{ $language->code }}]" rows="5">{{ old('description.' . $language->code, $slider->getTranslations('description')[$language->code] ?? '') }}</textarea>
-                                @error('description.' . $language->code . '.' . $loop->index)
+                                <textarea id="description-{{ $language->code }}" class="form-control @error('description.' . $language->code) is-invalid @enderror" name="description[{{ $language->code }}]" rows="5">{{ old('description.' . $language->code, $slider->getTranslations('description')[$language->code] ?? '') }}</textarea>
+                                @error('description.' . $language->code)
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

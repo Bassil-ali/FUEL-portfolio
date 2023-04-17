@@ -279,11 +279,25 @@
                                     type: 'alert',
                                     text: response,
                                     killer: true,
-                                    timeout: 2000,
+                                    timeout: 4000,
                                 }).show();
 
                                 that.html(originalText);
-                            },
+
+                            }, error: function (response) {
+
+                                data = response.responseJSON.message;
+
+                                new Noty({
+                                    layout: 'topRight',
+                                    type: 'error',
+                                    text: data + '😥',
+                                    killer: true,
+                                    timeout: 4000,
+                                }).show();
+
+                                that.html(originalText);
+                            }
 
                         });//end of ajax call
 

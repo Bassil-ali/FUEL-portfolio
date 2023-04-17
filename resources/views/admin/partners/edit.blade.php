@@ -13,7 +13,7 @@
     </ul>
 
 
-    <form method="post" action="{{ route('admin.partners.update', $slider->id) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('admin.partners.update', $partner->id) }}" enctype="multipart/form-data">
         @csrf
         @method('put')
 
@@ -25,7 +25,7 @@
 
                 <div class="tile shadow">
 
-                    @include('admin.dataTables.image_privew', ['imagePath' => $slider->image_path])
+                    @include('admin.dataTables.image_privew', ['imagePath' => $partner->image_path])
 
                 </div><!-- end of tile -->
 
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label>@lang('site.title') <span class="text-danger">{{ $loop->first ? '*' : '' }}</span></label>
                                 <input type="text" name="title[{{ $language->code }}]" class="form-control @error('title.' . $language->code) is-invalid @enderror" 
-                                value="{{ old('title.'. $language->code, $slider->getTranslations('title')[$language->code] ?? '') }}">
+                                value="{{ old('title.'. $language->code, $partner->getTranslations('title')[$language->code] ?? '') }}">
                                 @error('title.' . $language->code)
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -65,8 +65,8 @@
                             {{-- claim_description --}}
                             <div class="form-group">
                                 <label>@lang('site.description') <span class="text-danger">{{ $loop->first ? '*' : '' }}</span></label>
-                                <textarea id="description-{{ $language->code }}" class="form-control @error('description.' . $language->code . '.' . $loop->index) is-invalid @enderror" name="description[{{ $language->code }}]" rows="5">{{ old('description.' . $language->code, $slider->getTranslations('description')[$language->code] ?? '') }}</textarea>
-                                @error('description.' . $language->code . '.' . $loop->index)
+                                <textarea id="description-{{ $language->code }}" class="form-control @error('description.' . $language->code) is-invalid @enderror" name="description[{{ $language->code }}]" rows="5">{{ old('description.' . $language->code, $partner->getTranslations('description')[$language->code] ?? '') }}</textarea>
+                                @error('description.' . $language->code)
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -81,7 +81,7 @@
                     <label class="form-check-label" for="status">@lang('site.status')</label>
                     <div class="form-group ml-3">
                         <div class="form-check form-switch">
-                          <input class="form-check-input" id="status" type="checkbox" name="status" value="true" {{ old('status', $slider->status) ? 'checked' : '' }}>
+                          <input class="form-check-input" id="status" type="checkbox" name="status" value="true" {{ old('status', $partner->status) ? 'checked' : '' }}>
                         </div>
                     </div>
 

@@ -114,7 +114,9 @@ class SliderController extends Controller
 
     public function destroy(Slider $slider)
     {
-        Storage::disk('public')->delete($slider->image);
+        if($slider->image) {
+            Storage::disk('public')->delete($slider->image);
+        }
         $slider->delete();
 
         session()->flash('success', __('site.deleted_successfully'));
@@ -124,9 +126,10 @@ class SliderController extends Controller
 
     public function bulkDelete(DeleteRequest $request)
     {
-        $images = Slider::find(json_decode(request()->record_ids))->pluck('image')->toArray();
-        Storage::disk('public')->delete($images);
-        Slider::destroy(json_decode(request()->record_ids));
+        $ides   = request()->ids;
+        $images = Slider::find($ides)->pluck('image')->toArray();
+        Storage::disk('public')->delete($images) ?? '';
+        Slider::destroy($ides);
 
         session()->flash('success', __('site.deleted_successfully'));
         return response(__('site.deleted_successfully'));

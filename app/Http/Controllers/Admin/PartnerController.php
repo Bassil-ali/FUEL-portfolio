@@ -91,7 +91,7 @@ class PartnerController extends Controller
             return abort(403);
         }
 
-        return view('admin.partners.edit', compact('slider'));
+        return view('admin.partners.edit', compact('partner'));
 
     }//end of edit
 
@@ -124,9 +124,10 @@ class PartnerController extends Controller
 
     public function bulkDelete(DeleteRequest $request)
     {
-        $images = Partner::find(json_decode(request()->record_ids))->pluck('image')->toArray();
+        $ides   = request()->ids;
+        $images = Partner::find($ides)->pluck('image')->toArray();
         Storage::disk('public')->delete($images);
-        Partner::destroy(json_decode(request()->record_ids));
+        Partner::destroy($ides);
 
         session()->flash('success', __('site.deleted_successfully'));
         return response(__('site.deleted_successfully'));
