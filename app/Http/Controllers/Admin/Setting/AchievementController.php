@@ -17,10 +17,26 @@ class AchievementController extends Controller
 
     public function store(AchievementRequest $request)
     {
-        saveTransSetting('contact_email', $request->email);
-        saveTransSetting('contact_phone', $request->phone);
-        saveTransSetting('contact_fax', $request->fax);
-        saveTransSetting('contact_address', $request->address);
+
+        $itemName  = [];
+        $itemCount = [];
+        foreach($request->get('achievement_name_' . app()->getLocale()) as $indexName=>$name) {
+            foreach(getLanguages() as $index=>$language) {
+                $itemName[$indexName] = [
+                    'ar' => $request->get('achievement_name_ar')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                    'en' => $request->get('achievement_name_en')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                ];
+
+                $itemCount[$indexName] = [
+                    'ar' => $request->get('achievement_count_ar')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                    'en' => $request->get('achievement_count_en')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                ];
+            }
+
+        }
+
+        saveSetting('achievement_name', $itemName);
+        saveSetting('achievement_count', $itemCount);
 
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->back();

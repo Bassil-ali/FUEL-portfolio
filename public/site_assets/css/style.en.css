@@ -1,0 +1,14 @@
+.section-headline h2::after {
+    left: -0.1em !important;
+    right: unset !important;
+}
+.about .img-sec::before {
+    right: unset !important;
+    left: 26px !important;
+   
+}
+.about .img-sec::after {
+    right: unset !important;
+    left: 0 !important;
+   
+}

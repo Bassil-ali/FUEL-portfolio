@@ -23,7 +23,6 @@
                     @method('post')
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-
                         @foreach(getLanguages() as $language)
                         <li class="nav-item" role="presentation">
                             <button class="nav-link {{ $loop->first ? 'active' : '' }}" id="{{ $language->code }}-tab" data-toggle="tab" data-target="#{{ $language->code }}" type="button" role="tab" aria-controls="{{ $language->code }}" aria-selected="{{ $loop->first ? true : false }}">
@@ -37,17 +36,79 @@
                         @foreach(getLanguages() as $language)
                           <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="{{ $language->code }}" role="tabpanel" aria-labelledby="{{ $language->code }}-tab">
                               {{--email--}}
-                            <div class="form-group">
-                                <label>@lang('settings.system_name') <span class="text-danger">*</span></label>
-                                <input type="text" name="system_name[{{ $language->code }}]" class="form-control" value="{{ old('system_name.' . $language->code , getTransSetting('system_name', $language->code)) }}" required>
-                            </div>
+                              <div id="append-item-{{ $language->code }}">
+
+                              	@if(old('achievement_name_' . $language->code))
+
+	                              	@foreach(old('achievement_name_' . $language->code) as $indexName=>$name)
+	                              	@dd($name);
+
+	                              		<div class="row mt-2">
+											<div class="col-2 col-md-1">
+										        <a class="btn btn-danger mt-4 text-light remove-item remove-item-{{ $loop->index }}" data-uuid="{{ $loop->index }}">
+										           <i class="fa fa-trash"></i> 
+										        </a>
+											</div>
+
+											<div class="col-10 col-md col-5">
+										        <div class="form-group">
+										            <label>count <span class="text-danger">*</span></label>
+										            <input type="text" name="achievement_count_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('achievement_count'), true)[$indexName][$language->code] ?? '' }}" required>
+										        </div>
+											</div>
+
+											<div class="col-12 col-md col-5">
+												<div class="form-group">
+										            <label>name <span class="text-danger">*</span></label>
+										            <input type="text" name="achievement_name_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('achievement_name'), true)[$indexName][$language->code] ?? '' }}" required>
+										        </div>
+											</div>
+										</div>
+
+	                              	@endforeach
+
+                              	@else
+
+                              	@foreach(json_decode(getSetting('achievement_name'), true) as $indexName=>$name)
+
+                              		<div class="row mt-2">
+										<div class="col-2 col-md-1">
+									        <a class="btn btn-danger mt-4 text-light remove-item remove-item-{{ $loop->index }}" data-uuid="{{ $loop->index }}">
+									           <i class="fa fa-trash"></i> 
+									        </a>
+										</div>
+
+										<div class="col-10 col-md col-5">
+									        <div class="form-group">
+									            <label>count <span class="text-danger">*</span></label>
+									            <input type="text" name="achievement_count_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('achievement_count'), true)[$indexName][$language->code] ?? '' }}">
+									        </div>
+										</div>
+
+										<div class="col-12 col-md col-5">
+											<div class="form-group">
+									            <label>name <span class="text-danger">*</span></label>
+									            <input type="text" name="achievement_name_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('achievement_name'), true)[$indexName][$language->code] ?? '' }}">
+									        </div>
+										</div>
+									</div>
+
+                              	@endforeach
+                              	
+                              	@endif
+                              	
+                              </div>
 
                           </div>
                         @endforeach
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>@lang('site.create')</button>
+				    <a class="col-12 text-light btn btn-primary mt-3" id="add-item">
+				    	<i class="fa fa-plus"></i>
+				    </a>
+
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>@lang('site.save')</button>
                     </div>
 
                 </form><!-- end of form -->
@@ -59,3 +120,54 @@
     </div><!-- end of row -->
 
 @endsection
+@push('scripts')
+
+<script type="text/javascript">
+
+	$(document).on('click', '#add-item', function (e) {
+		e.preventDefault();
+
+		let uuid = $.now();
+
+		languages = ['ar', 'en'];
+
+		$.each(languages, function(index, lang) {
+
+			let htnl = `<div class="row mt-2">
+							<div class="col-2 col-md-1">
+						        <a class="btn btn-danger mt-4 text-light remove-item remove-item-${uuid}" data-uuid="${uuid}">
+						           <i class="fa fa-trash"></i> 
+						        </a>
+							</div>
+
+							<div class="col-10 col-md col-5">
+						        <div class="form-group">
+						            <label>count <span class="text-danger">*</span></label>
+						            <input type="text" name="achievement_count_${lang}[]" class="form-control" required>
+						        </div>
+							</div>
+
+							<div class="col-12 col-md col-5">
+								<div class="form-group">
+						            <label>name <span class="text-danger">*</span></label>
+						            <input type="text" name="achievement_name_${lang}[]" class="form-control" required>
+						        </div>
+							</div>
+						</div>`;
+
+			$('#append-item-' + lang).append(htnl);
+		});
+
+	});//end of delete
+
+	$(document).on('click', '.remove-item', function (e) {
+		e.preventDefault();
+
+		let uuid = $(this).data('uuid');
+
+		$('.remove-item-' + uuid).parent().parent().remove();
+
+	});//end of delete
+</script>
+
+@endpush
