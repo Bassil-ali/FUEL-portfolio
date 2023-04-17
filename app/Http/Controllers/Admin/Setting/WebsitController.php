@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Setting;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AdminRequest;
 use App\Http\Requests\Admin\Setting\WebsitRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\View\View;

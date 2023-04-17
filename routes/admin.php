@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Setting\WebsitController;
 use App\Http\Controllers\Admin\Setting\ContactController;
 use App\Http\Controllers\Admin\Setting\AchievementController;
+use App\Http\Controllers\Admin\Setting\AboutController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
@@ -90,6 +91,13 @@ Route::middleware([
 
             Route::get('achievement', 'index')->name('achievement');
             Route::post('achievement/store', 'store')->name('achievement.store');
+
+        });
+
+        Route::controller(AboutController::class)->group(function () {
+
+            Route::get('about', 'index')->name('about');
+            Route::post('about/store', 'store')->name('abou.store');
 
         });
 
