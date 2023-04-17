@@ -53,6 +53,8 @@ return array(
     'fax'         => 'فاكس',
     'address'     => 'العنوان',
 
+    'commercial_record'        => 'السجل التجاري',
+    'tax_number'               => 'الرقم الضريبي',
     'password'                 => 'كلمه المرور',
     'password_confirmation'    => 'اعاده كلمه المرور',
 );

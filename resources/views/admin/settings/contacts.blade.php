@@ -66,6 +66,28 @@
                         @enderror
                     </div>
 
+                    {{--commercial_record--}}
+                    <div class="form-group">
+                        <label>@lang('site.commercial_record') <span class="text-danger">*</span></label>
+                        <input type="text" name="commercial_record" autofocus class="form-control @error('commercial_record') is-invalid @enderror" value="{{ old('commercial_record', getSetting('contact_commercial_record')) }}">
+                        @error('commercial_record')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    {{--tax_number--}}
+                    <div class="form-group">
+                        <label>@lang('site.tax_number') <span class="text-danger">*</span></label>
+                        <input type="text" name="tax_number" autofocus class="form-control @error('tax_number') is-invalid @enderror" value="{{ old('tax_number', getSetting('contact_tax_number')) }}">
+                        @error('tax_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>@lang('site.create')</button>
                     </div>

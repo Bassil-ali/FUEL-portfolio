@@ -21,6 +21,8 @@ class ContactController extends Controller
         saveTransSetting('contact_phone', $request->phone);
         saveTransSetting('contact_fax', $request->fax);
         saveTransSetting('contact_address', $request->address);
+        saveTransSetting('contact_commercial_record', $request->commercial_record);
+        saveTransSetting('contact_tax_number', $request->tax_number);
 
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->back();

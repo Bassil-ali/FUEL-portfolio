@@ -15,10 +15,12 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'   => ['nullable', 'email', 'min:2','max:30'],
-            'phone'   => ['nullable', 'string', 'min:2','max:30'],
-            'fax'     => ['nullable', 'string', 'min:2','max:30'],
-            'address' => ['nullable', 'string', 'min:2','max:255'],
+            'email'             => ['nullable', 'email', 'min:2','max:30'],
+            'phone'             => ['nullable', 'string', 'min:2','max:30'],
+            'fax'               => ['nullable', 'string', 'min:2','max:30'],
+            'address'           => ['nullable', 'string', 'min:2','max:255'],
+            'commercial_record' => ['nullable', 'string', 'min:2','max:255'],
+            'tax_number'        => ['nullable', 'string', 'min:2','max:255'],
         ];
 
     }//end of rules

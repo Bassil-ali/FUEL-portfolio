@@ -72,6 +72,8 @@ return array(
     'fax'         => 'Fax',
     'address'     => 'Address',
 
+    'commercial_record'        => 'Commercial Record',
+    'tax_number'               => 'Tax Number',
     'password'                 => 'Password',
     'password_confirmation'    => 'Password Confirmation',
 );
