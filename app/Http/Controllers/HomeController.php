@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders  = Slider::all();
-        $partners = Partner::all();
+        $partners = Partner::active()->get();
 
         return view('site.index.index', compact('sliders', 'partners'));
 

@@ -21,7 +21,8 @@ return new class extends Migration
             $table->boolean('status')->default(0);
 
             $table->foreignId('admin_id')->nullable()->constrained()->onDelete('cascade');
-            
+
+            $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
         });

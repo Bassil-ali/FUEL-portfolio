@@ -76,6 +76,11 @@
     <link rel="stylesheet" href="{{ asset('admin_assets/css/custom.css')}}">
 
     <style>
+        .dropdown-item {
+            text-align: -webkit-right !important;
+            text-align: right !important;
+        }
+        .btn-primary,
         .app-header {
             background-color: #292967 !important;
         }

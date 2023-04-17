@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="ltr">
+<html lang="{{ app()->getLocale() }}" dir="{{ session('dir') }}">
 <head>
     <meta name="description" content="">
 
@@ -16,6 +16,12 @@
 
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('admin_assets/css/font-awesome.min.css') }}">
+
+    <style type="text/css">
+        .btn-primary {
+            background-color: #292967 !important;
+        }
+    </style>
 
     @if (app()->getLocale() == 'ar')
 
@@ -55,14 +61,14 @@
         <div class="login-box">
 
             <form class="login-form" method="post" action="{{ route('admin.login.store') }}">
-                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>{{ trans('site.login') }}</h3>
 
                     @csrf
                     @method('post')
 
                     {{-- Email --}}
                     <div class="form-group">
-                        <label class="control-label">@lang('users.email')</label>
+                        <label class="control-label">@lang('site.email')</label>
                         <input id="login" type="text" name="login" class="form-control @error('login') is-invalid @enderror" value="{{ old('login','super_admin@app.com') }}" required autofocus>
                         @error('login')
                             <span class="invalid-feedback" role="alert">
@@ -73,7 +79,7 @@
 
                     {{-- password --}}
                     <div class="form-group">
-                        <label class="control-label">@lang('users.password')</label>
+                        <label class="control-label">@lang('site.password')</label>
                         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password','password') }}" required autofocus>
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -87,23 +93,24 @@
                         <div class="utility">
                             <div class="animated-checkbox">
                                 <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}><span class="label-text">{{ __('Remember Me') }}</span>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <span class="label-text">{{ trans('site.remember') }}</span>
                                 </label>
                             </div>
-                            <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
+                            {{-- <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p> --}}
                         </div>{{-- utility --}}
                     </div>{{-- form-group --}}
 
                     {{-- button --}}
                     <div class="form-group btn-container">
-                        <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+                        <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>{{ trans('site.login') }}</button>
                     </div>{{-- form-group btn-container --}}
 
             </form>{{-- login-form --}}
 
             <form class="forget-form" action="index.html">
 
-                <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+                {{-- <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3> --}}
 
                 {{-- email --}}
                 <div class="form-group">

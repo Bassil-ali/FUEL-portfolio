@@ -24,11 +24,11 @@ class LoginController extends Controller
             $login_type => $request->input('login')
         ]);
 
-        $remember = true;
+        $remember = $request->has('remember');
 
         $credentials = $request->only($login_type, 'password');
 
-        if (auth('admin')->attempt($credentials)) {
+        if (auth('admin')->attempt($credentials, $remember)) {
 
             session()->flash('success', __('site.login_successfully'));
 

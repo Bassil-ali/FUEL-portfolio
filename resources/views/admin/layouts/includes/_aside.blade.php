@@ -21,14 +21,14 @@
 
         <li>
             <a class="app-menu__item {{ request()->is('*sliders*') ? 'active' : '' }}" href="{{ route('admin.sliders.index') }}">
-                <i class="app-menu__icon fa fa-home"></i> 
+                <i class="app-menu__icon fa fa-sliders"></i> 
                 <span class="app-menu__label">@lang('site.sliders')</span>
             </a>
         </li>
 
         <li>
             <a class="app-menu__item {{ request()->is('*partners*') ? 'active' : '' }}" href="{{ route('admin.partners.index') }}">
-                <i class="app-menu__icon fa fa-home"></i> 
+                <i class="app-menu__icon fa fa-handshake"></i> 
                 <span class="app-menu__label">@lang('site.partners')</span>
             </a>
         </li>
@@ -36,7 +36,7 @@
 
         <li class="treeview {{ request()->is('*managements*') ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-user-circle"></i>
+                <i class="app-menu__icon fa fa-tasks"></i>
                 <span class="app-menu__label">@lang('site.managements')</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
@@ -48,7 +48,7 @@
                 </li>
                 <li>
                     <a class="treeview-item {{ request()->is('*languages*') ? 'active' : '' }}" href="{{ route('admin.managements.languages.index') }}">
-                        <i class="icon fa fa-flag"></i>@lang('site.languages')
+                        <i class="icon fa fa-language"></i>@lang('site.languages')
                     </a>
                 </li>
             </ul>
@@ -57,36 +57,36 @@
         {{--settings--}}
         <li class="treeview {{ request()->is('*settings*') ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="app-menu__icon fa fa-user-circle"></i>
+                <i class="app-menu__icon fa fa-gears"></i>
                 <span class="app-menu__label">@lang('settings.settings')</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
                     <a class="treeview-item {{ request()->is('*websit*') ? 'active' : '' }}" href="{{ route('admin.settings.websit') }}">
-                        <i class="icon fa fa-circle"></i>@lang('settings.websit')
+                        <i class="icon fa fa-globe"></i>@lang('settings.websit')
                     </a>
                 </li>
                 <li>
                     <a class="treeview-item {{ request()->is('*contact*') ? 'active' : '' }}" href="{{ route('admin.settings.contact') }}">
-                        <i class="icon fa fa-circle"></i>@lang('settings.contact')
+                        <i class="icon fa fa-phone"></i>@lang('settings.contact')
                     </a>
                 </li>
                 <li>
                     <a class="treeview-item {{ request()->is('*achievement*') ? 'active' : '' }}" href="{{ route('admin.settings.achievement') }}">
-                        <i class="icon fa fa-circle"></i>@lang('settings.achievement')
+                        <i class="icon fa fa-briefcase"></i>@lang('settings.achievement')
                     </a>
                 </li>
 
                 <li>
                     <a class="treeview-item {{ request()->is('*about*') ? 'active' : '' }}" href="{{ route('admin.settings.about') }}">
-                        <i class="icon fa fa-circle"></i>@lang('settings.about')
+                        <i class="icon fa fa-book"></i>@lang('settings.about')
                     </a>
                 </li>
 
                 <li>
                     <a class="treeview-item {{ request()->is('*feature*') ? 'active' : '' }}" href="{{ route('admin.settings.feature') }}">
-                        <i class="icon fa fa-circle"></i>@lang('settings.feature')
+                        <i class="icon fa fa-tags"></i>@lang('settings.feature')
                     </a>
                 </li>
             </ul>

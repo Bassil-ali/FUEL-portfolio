@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Scopes\StatusScope;
+use Illuminate\Database\Eloquent\Builder;
 
 class Partner extends Model
 {
@@ -31,5 +33,17 @@ class Partner extends Model
         return $this->belongsTo(Admin::class);
 
     }//end of admin
+
+    public function scopeActive(Builder $query): void
+    {
+        $query;
+    }
+
+    // protected static function booted(): void
+    // {
+    //     if(!request()->routeIs('admin.partners.*')) {
+    //        static::addGlobalScope(new StatusScope);
+    //     }
+    // }
 
 }//end of class

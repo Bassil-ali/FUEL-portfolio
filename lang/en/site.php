@@ -15,6 +15,7 @@ return array(
 
     'logout'          => 'Logout',
     'login'           => 'Login',
+    'remember'        => 'Remember Me',
     'serial'          => 'Serial',
     'print'           => 'PDF',
     'download'        => 'Download',
@@ -27,13 +28,13 @@ return array(
     'search' => 'Search',
     'save'   => 'Save',
 
-    'no_data_found'        => 'Sorry No Data found',
-    'added_successfully'   => 'Record Added Successfully',
-    'updated_successfully' => 'Record Updated Successfully',
-    'deleted_successfully' => 'Record Deleted Successfully',
-    'confirm_delete'       => 'Confirm deletion',
+    'no_data_found'        => 'Sorry No Data found 😴',
+    'added_successfully'   => 'Record Added Successfully 🤗',
+    'updated_successfully' => 'Record Updated Successfully 😎',
+    'deleted_successfully' => 'Record Deleted Successfully 😑',
+    'confirm_delete'       => 'Confirm deletion 😞',
     'login_successfully'   => 'Login Successfully 👌',
-    'confirm'              => 'Confirm ?',
+    'confirm'              => 'Confirm 🙄 ?',
 
     'yes'=> 'Yes',
     'no' => 'No',
