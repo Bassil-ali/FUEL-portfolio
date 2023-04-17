@@ -8,5 +8,6 @@ return [
     'contact'     => 'معلومات الاتصال',
     'about'       => 'من نحن',
     'achievement' => 'الإنجازات',
+    'feature'     => 'ميزة',
 
 ];

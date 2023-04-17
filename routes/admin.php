@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\Setting\WebsitController;
 use App\Http\Controllers\Admin\Setting\ContactController;
 use App\Http\Controllers\Admin\Setting\AchievementController;
 use App\Http\Controllers\Admin\Setting\AboutController;
+use App\Http\Controllers\Admin\Setting\FeatureController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
@@ -98,6 +99,13 @@ Route::middleware([
 
             Route::get('about', 'index')->name('about');
             Route::post('about/store', 'store')->name('about.store');
+
+        });
+
+        Route::controller(FeatureController::class)->group(function () {
+
+            Route::get('feature', 'index')->name('feature');
+            Route::post('feature/store', 'store')->name('feature.store');
 
         });
 

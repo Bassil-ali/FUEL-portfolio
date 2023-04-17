@@ -1,13 +1,17 @@
 <div class="container">
-    <div class="mb-5">
-        <label for="Image" class="form-label">
-        	@lang('site.image')
-        </label>
-        <input class="form-control" type="file" name="image" id="formFile" onchange="preview()" {{ !empty($imagePath) ? '' : 'required' }}>
-        <a onclick="clearImage()" class="btn btn-primary mt-3 text-light" id="remove-image">
-    	    remove image
-    	</a>
+
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="formFile" name="image" onchange="preview()" {{ !empty($imagePath) ? '' : 'required' }}>
+            <label class="custom-file-label" for="formFile">Choose @lang('site.image')</label>
+        </div>
+        <div class="input-group-append">
+            <a onclick="clearImage()" class="btn btn-outline-secondary text-dark" id="remove-image">
+                remove image
+            </a>
+        </div>
     </div>
+
     @if(!empty($imagePath))
     	<img id="frame" name="image" src="{{ $imagePath }}" class="img-fluid"/>
     @else

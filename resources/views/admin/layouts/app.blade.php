@@ -76,6 +76,12 @@
     <link rel="stylesheet" href="{{ asset('admin_assets/css/custom.css')}}">
 
     <style>
+        .app-header {
+            background-color: #292967 !important;
+        }
+        .app-header__logo {
+            background-color: rgb(66 41 103) !important;
+        }
         @if (request()->segment(2) == 'reports')
             .dataTables_filter, .dataTables_info { display: none; }
         @endif

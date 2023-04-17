@@ -8,5 +8,6 @@ return [
     'contact'     => 'Contact Us',
     'about'       => 'About Us',
     'achievement' => 'Achievement',
+    'feature'     => 'Feature',
 
 ];

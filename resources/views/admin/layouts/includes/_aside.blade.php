@@ -83,6 +83,12 @@
                         <i class="icon fa fa-circle"></i>@lang('settings.about')
                     </a>
                 </li>
+
+                <li>
+                    <a class="treeview-item {{ request()->is('*feature*') ? 'active' : '' }}" href="{{ route('admin.settings.feature') }}">
+                        <i class="icon fa fa-circle"></i>@lang('settings.feature')
+                    </a>
+                </li>
             </ul>
         </li>
 
