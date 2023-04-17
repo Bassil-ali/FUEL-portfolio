@@ -97,7 +97,7 @@ Route::middleware([
         Route::controller(AboutController::class)->group(function () {
 
             Route::get('about', 'index')->name('about');
-            Route::post('about/store', 'store')->name('abou.store');
+            Route::post('about/store', 'store')->name('about.store');
 
         });
 
