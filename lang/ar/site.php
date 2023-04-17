@@ -17,6 +17,7 @@ return array(
     'delete' => 'حذف',
     'action' => 'إختر',
     'search' => 'بحث',
+    'save'   => 'حفظ',
 
     'no_data_found'        => 'عفوا لا يوجد بيانات',
     'added_successfully'   => 'تم تسجيل الطلب بنجاح',

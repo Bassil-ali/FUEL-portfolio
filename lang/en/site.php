@@ -25,6 +25,8 @@ return array(
     'delete' => 'Delete',
     'action' => 'Action',
     'search' => 'Search',
+    'save'   => 'Save',
+
     'no_data_found'        => 'Sorry No Data found',
     'added_successfully'   => 'Record Added Successfully',
     'updated_successfully' => 'Record Updated Successfully',

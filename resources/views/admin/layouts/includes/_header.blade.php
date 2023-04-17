@@ -1,7 +1,7 @@
 <!-- Navbar-->
 <header class="app-header">
     <a class="app-header__logo" style="font-family: 'Cairo', 'sans-serif';" href="{{ route('admin.index') }}">
-    mjal-store
+    FUEL
 </a>
 
     <!-- Sidebar toggle button-->
@@ -9,21 +9,6 @@
 
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
-
-        {{--<!-- User Menu-->--}}
-        {{--<li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-flag fa-lg"></i></a>--}}
-        {{--<ul class="dropdown-menu settings-menu dropdown-menu-left">--}}
-        {{--@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)--}}
-        {{--<li>--}}
-        {{--<a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">--}}
-        {{--{{ $properties['native'] }}--}}
-        {{--</a>--}}
-        {{--</li>--}}
-        {{--@endforeach--}} {{--</ul>--}}
-        {{--</li>--}}
-
-        {{--notification--}}
-
 
         {{--user menu--}}
         <li class="dropdown">
