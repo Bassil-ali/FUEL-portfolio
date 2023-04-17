@@ -19,9 +19,15 @@ class WebsitController extends Controller
     public function store(WebsitRequest $request)
     {
         saveTransSetting('system_name', $request->system_name);
+        saveTransSetting('system_description', $request->system_description);
+
         if(request()->file('image')) {
 
-            Storage::disk('public')->delete(getSetting('system_image'));
+            if(!empty(getSetting('system_image'))) {
+
+                Storage::disk('public')->delete(getSetting('system_image'));
+            }
+
 
             $image = request()->file('image')->store('settings', 'public');
 

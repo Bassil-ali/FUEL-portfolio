@@ -77,6 +77,8 @@
                         @enderror
                     </div>
 
+                    {{-- description --}}
+
                     {{--tax_number--}}
                     <div class="form-group">
                         <label>@lang('site.tax_number') <span class="text-danger">*</span></label>

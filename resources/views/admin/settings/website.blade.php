@@ -54,6 +54,12 @@
                                 <input type="text" name="system_name[{{ $language->code }}]" class="form-control" value="{{ old('system_name.' . $language->code , getTransSetting('system_name', $language->code)) }}" required>
                             </div>
 
+                            {{-- description --}}
+                            <div class="form-group">
+                                <label>@lang('site.description') <span class="text-danger">*</span></label>
+                                <textarea id="description-{{ $language->code }}" class="form-control" name="system_description[{{ $language->code }}]" rows="5">{{ old('system_description.' . $language->code, getTransSetting('system_description', $language->code)) }}</textarea>
+                            </div>
+
                           </div>
                         @endforeach
                     </div>

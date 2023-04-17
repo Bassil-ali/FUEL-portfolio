@@ -2,41 +2,47 @@
   <div class="container" data-aos="fade-up">
 
     <div class="section-headline text-center">
-      <h2>اتصل بنا</h2>
+        <h2>@lang('settings.contact')</h2>
     </div>
     <div class="row contact-info">
+      @if(!empty(getSetting('contact_address')))
       <div class="col-md-3">
         <a href="https://goo.gl/maps/apooc6Vpd4by24MP6" class="contact-address">
           <i class="bi bi-geo-alt"></i>
-          <h3>العنوان</h3>
-          <address> السعودية - جدة
-            شارع حائل , 2419 الرمز البريدي 21451 </address>
+          <h3>@lang('site.address')</h3>
+          <address>
+            {{ getSetting('contact_address') }}
+          </address>
         </a>
       </div>
-
+      @endif
+      @if(!empty(getSetting('contact_address')))
       <div class="col-md-3 mb-md-0 mb-3">
-        <a href="https://wa.me/+966545505202" class="contact-phone ">
+        <a href="https://wa.me/{{ getSetting('contact_fax') }}" class="contact-phone">
           <i class="bi bi-telephone"></i>
-          <h3> الفاكس</h3>
-          <p>0126426660</p>
+          <h3>@lang('site.fax')</h3>
+          <p>{{ getSetting('contact_fax') }}</p>
         </a>
       </div>
+      @endif
+      @if(!empty(getSetting('contact_address')))
       <div class="col-md-3 mb-md-0 mb-3">
-        <a href="#" class="contact-phone ">
+        <a href="tel:{{ getSetting('contact_phone') }}" class="contact-phone">
           <i class="bi bi-telephone"></i>
-          <h3>الهاتف</h3>
-          <p>0126423360</p>
+          <h3>@lang('site.phone')</h3>
+          <p>{{ getSetting('contact_phone') }}</p>
         </a>
       </div>
-
+      @endif
+      @if(!empty(getSetting('contact_address')))
       <div class="col-md-3">
-        <a href="mailto:info@fuelap.co" class="contact-email">
+        <a href="mailto:{{ getSetting('contact_email') }}" class="contact-email">
           <i class="bi bi-envelope"></i>
-          <h3>البريد الالكتروني</h3>
-          <p>info@fuelap.co</p>
+          <h3>@lang('site.email')</h3>
+          <p>{{ getSetting('contact_email') }}</p>
         </a>
       </div>
     </div>
-
+    @endif
   </div>
 </section><!-- End Contact Section -->

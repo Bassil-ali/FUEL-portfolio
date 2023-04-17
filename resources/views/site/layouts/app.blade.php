@@ -1,15 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="{{ app()->getLocale() }}" dir="{{ session('dir') }}">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title> شركة فيول | لقطع غيار السيارات </title>
-  <meta content="شركة ذات مسؤولية محدودة (ذ) م م مقرها الرئيس مدينة جدة بالمملكة العربية السعودية لها فروع عدة في كل من الرياض، الدمام، خميس مشيط وتبوك. وهي شركة رائدة في مجال استيراد وتصدير قطع غيار السيارات."
-    name="description">
-  <meta content="شركة ذات مسؤولية محدودة (ذ) م م مقرها الرئيس مدينة جدة بالمملكة العربية السعودية لها فروع عدة في كل من الرياض، الدمام، خميس مشيط وتبوك. وهي شركة رائدة في مجال استيراد وتصدير قطع غيار السيارات.
-  " name="keywords">
+  <title>{{ getTransSetting('system_name', app()->getLocale()) }}</title>
+  <meta content="{{ getTransSetting('system_description', app()->getLocale()) }}" name="description">
+  <meta content="{{ getTransSetting('system_description', app()->getLocale()) }}" name="keywords">
 
   <!-- Favicons -->
   <link href="{{ asset('site_assets/img/icon.png') }}" rel="icon">

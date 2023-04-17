@@ -52,6 +52,8 @@ return array(
     'email'       => 'الايميل',
     'fax'         => 'فاكس',
     'address'     => 'العنوان',
+    'copyright'   => '&copy; جميع الحقوق محفوظة لصالح <strong>شركة فيول</strong>',
+    'connect_with_us'  => 'تواصل معنا',
 
     'commercial_record'        => 'السجل التجاري',
     'tax_number'               => 'الرقم الضريبي',

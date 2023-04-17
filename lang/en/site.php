@@ -71,6 +71,8 @@ return array(
     'email'       => 'Email',
     'fax'         => 'Fax',
     'address'     => 'Address',
+    'copyright'   => '&copy; All rights reserved to <strong>Fuel Company</strong>',
+    'connect_with_us'  => 'Connect with us',
 
     'commercial_record'        => 'Commercial Record',
     'tax_number'               => 'Tax Number',

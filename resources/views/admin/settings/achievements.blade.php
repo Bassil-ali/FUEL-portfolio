@@ -41,7 +41,7 @@
                               	@if(old('achievement_name_' . $language->code))
 
 	                              	@foreach(old('achievement_name_' . $language->code) as $indexName=>$name)
-	                              	@dd($name);
+	                              	{{-- @dd($name); --}}
 
 	                              		<div class="row mt-2">
 											<div class="col-2 col-md-1">

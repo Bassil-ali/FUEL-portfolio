@@ -14,8 +14,9 @@
               <div class="container">
                 <h2 class="animate__animated animate__fadeInDown">{{ $slider->title }}</h2>
                 <p class="animate__animated animate__fadeInUp">{!! $slider->description !!}</p>
-                <a href="#contact" class="btn-get-started scrollto animate__animated animate__fadeInUp"> تواصل
-                  معنا </a>
+                <a href="#contact" class="btn-get-started scrollto animate__animated animate__fadeInUp">
+                  @lang('site.connect_with_us')
+                </a>
               </div>
             </div>
           </div>
