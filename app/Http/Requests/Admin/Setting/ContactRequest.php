@@ -15,14 +15,27 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'             => ['nullable', 'email', 'min:2','max:30'],
-            'phone'             => ['nullable', 'string', 'min:2','max:30'],
-            'fax'               => ['nullable', 'string', 'min:2','max:30'],
-            'address'           => ['nullable', 'string', 'min:2','max:255'],
-            'commercial_record' => ['nullable', 'string', 'min:2','max:255'],
-            'tax_number'        => ['nullable', 'string', 'min:2','max:255'],
+            'email'             => ['required', 'email', 'min:2','max:30'],
+            'phone'             => ['required', 'string', 'min:2','max:30'],
+            'fax'               => ['required', 'string', 'min:2','max:30'],
+            'address'           => ['required', 'string', 'min:2','max:255'],
+            'commercial_record' => ['required', 'string', 'min:2','max:255'],
+            'tax_number'        => ['required', 'string', 'min:2','max:255'],
         ];
 
     }//end of rules
+
+    public function attributes(): array
+    {
+        return [
+            'email'             => trans('site.email'),
+            'phone'             => trans('site.phone'),
+            'fax'               => trans('site.fax'),
+            'address'           => trans('site.address'),
+            'commercial_record' => trans('site.commercial_record'),
+            'tax_number'        => trans('site.tax_number'),
+        ];
+
+    }//en dof attributes
 
 }//end of class

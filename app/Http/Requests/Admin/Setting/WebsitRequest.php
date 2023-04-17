@@ -24,4 +24,16 @@ class WebsitRequest extends FormRequest
 
     }//end of rules
 
+    public function attributes(): array
+    {
+        return [
+            'system_name.*'        => trans('settings.system_name'),
+            'system_name'          => trans('settings.system_name'),
+            'system_description.*' => trans('site.phone'),
+            'system_description'   => trans('site.phone'),
+            'image'                => trans('site.image'),
+        ];
+
+    }//en dof attributes
+
 }//end of class

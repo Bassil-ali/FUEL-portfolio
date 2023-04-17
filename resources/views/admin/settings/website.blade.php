@@ -51,13 +51,23 @@
                               {{--email--}}
                             <div class="form-group">
                                 <label>@lang('settings.system_name') <span class="text-danger">*</span></label>
-                                <input type="text" name="system_name[{{ $language->code }}]" class="form-control" value="{{ old('system_name.' . $language->code , getTransSetting('system_name', $language->code)) }}" required>
+                                <input type="text" name="system_name[{{ $language->code }}]" class="form-control @error('system_name.' . $language->code) is-invalid @enderror" value="{{ old('system_name.' . $language->code , getTransSetting('system_name', $language->code)) }}">
+                                @error('system_name.' . $language->code)
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             {{-- description --}}
                             <div class="form-group">
                                 <label>@lang('site.description') <span class="text-danger">*</span></label>
-                                <textarea id="description-{{ $language->code }}" class="form-control" name="system_description[{{ $language->code }}]" rows="5">{{ old('system_description.' . $language->code, getTransSetting('system_description', $language->code)) }}</textarea>
+                                <textarea id="description-{{ $language->code }}" class="form-control @error('system_description.' . $language->code) is-invalid @enderror" name="system_description[{{ $language->code }}]" rows="5">{{ old('system_description.' . $language->code, getTransSetting('system_description', $language->code)) }}</textarea>
+                                @error('system_description.' . $language->code)
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                           </div>
