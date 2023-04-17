@@ -2,32 +2,31 @@
 
 @section('content')
 
-  <!-- ======= hero Section ======= -->
-  @include('site.index.includes.slide')
+    <!-- ======= hero Section ======= -->
+    @include('site.index.includes.slide')
 
+    <main id="main">
 
-  <main id="main">
-    
-    <!-- ======= About Section ======= -->
-    @include('site.index.includes.about')
-    <!-- End About Section -->
+        <!-- ======= About Section ======= -->
+        @include('site.index.includes.about')
+        <!-- End About Section -->
 
-     <!-- ======= Features Section ======= -->
-    @include('site.index.includes.Features')
-   
+         <!-- ======= Features Section ======= -->
+        @include('site.index.includes.Features')
+        <!-- End Features Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    @include('site.index.includes.testimonials')
+        <!-- ======= Testimonials Section ======= -->
+        @include('site.index.includes.testimonials')
+        <!-- End testimonials Section -->
 
+        <!-- ======= Facts Section ======= -->
+        @include('site.index.includes.facts')    
+        <!-- End facts Section -->
 
-    <!-- ======= Facts Section ======= -->
-    @include('site.index.includes.facts')    
-    <!-- End Facts Section -->
+        <!-- ======= Contact Section ======= -->
+        @include('site.index.includes.contact')
+        <!-- End contact Section -->
 
-    <!-- ======= Contact Section ======= -->
-    @include('site.index.includes.contact')
-    
-
-  </main><!-- End #main -->
+    </main><!-- End #main -->
 
 @endsection
