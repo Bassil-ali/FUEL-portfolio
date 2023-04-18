@@ -27,6 +27,7 @@ Route::get('language/{language:code}', [App\Http\Controllers\HomeController::cla
 Route::get('/c', function() {
 
    Artisan::call('optimize:clear');
+   Artisan::call('storage:link');
    Artisan::call('cache:clear');
    Artisan::call('config:clear');
    Artisan::call('config:cache');
