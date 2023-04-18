@@ -70,7 +70,7 @@ if (!function_exists('isInvalid')) {
 
  if(!function_exists('saveSetting')) {
     
-    function saveSetting($key, $value)
+    function saveSetting($key, $value = '')
     {
         $setting = \App\Models\Setting::where('key', $key)->first();
         if(!$setting) {

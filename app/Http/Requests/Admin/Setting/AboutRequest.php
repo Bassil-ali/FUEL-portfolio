@@ -15,13 +15,13 @@ class AboutRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'image' => ['required', 'image'],
+            'image' => ['nullable', 'image'],
         ];
 
         foreach(getLanguages() as $language) {
 
-            $roles['about_title_' . $language->code]       = ['required'];           
-            $roles['about_description_' . $language->code] = ['required'];          
+            $roles['about_title_' . $language->code]       = ['nullable'];           
+            $roles['about_description_' . $language->code] = ['nullable'];          
 
         }
 

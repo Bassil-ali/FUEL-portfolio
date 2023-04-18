@@ -17,8 +17,16 @@ class WebsitController extends Controller
 
     public function store(WebsitRequest $request)
     {
-        saveTransSetting('system_name', $request->system_name);
-        saveTransSetting('system_description', $request->system_description);
+        if(empty($request->get('feature_title' . app()->getLocale()))) {
+
+            saveTransSetting('system_name', '');
+            saveTransSetting('system_description', '');
+
+        } else {
+
+            saveTransSetting('system_name', $request->system_name);
+            saveTransSetting('system_description', $request->system_description);
+        }
 
         if(request()->file('image')) {
 

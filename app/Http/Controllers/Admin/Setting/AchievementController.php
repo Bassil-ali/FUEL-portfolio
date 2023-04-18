@@ -16,26 +16,35 @@ class AchievementController extends Controller
 
     public function store(AchievementRequest $request)
     {
+        if(empty($request->get('achievement_name_' . app()->getLocale()))) {
 
-        $itemName  = [];
-        $itemCount = [];
-        foreach($request->get('achievement_name_' . app()->getLocale()) as $indexName=>$name) {
-            foreach(getLanguages() as $index=>$language) {
-                $itemName[$indexName] = [
-                    'ar' => $request->get('achievement_name_ar')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
-                    'en' => $request->get('achievement_name_en')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
-                ];
+            saveSetting('achievement_name', '');
+            saveSetting('achievement_count', '');
 
-                $itemCount[$indexName] = [
-                    'ar' => $request->get('achievement_count_ar')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
-                    'en' => $request->get('achievement_count_en')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
-                ];
+        } else {
+
+            $itemName  = [];
+            $itemCount = [];
+            foreach($request->get('achievement_name_' . app()->getLocale()) as $indexName=>$name) {
+                foreach(getLanguages() as $index=>$language) {
+                    $itemName[$indexName] = [
+                        'ar' => $request->get('achievement_name_ar')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                        'en' => $request->get('achievement_name_en')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                    ];
+
+                    $itemCount[$indexName] = [
+                        'ar' => $request->get('achievement_count_ar')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                        'en' => $request->get('achievement_count_en')[$indexName] ?? $request->get('achievement_name_' . app()->getLocale())[$indexName],
+                    ];
+                }
+
             }
 
-        }
+            saveSetting('achievement_name', $itemName);
+            saveSetting('achievement_count', $itemCount);
 
-        saveSetting('achievement_name', $itemName);
-        saveSetting('achievement_count', $itemCount);
+        }//end of 
+
 
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->back();

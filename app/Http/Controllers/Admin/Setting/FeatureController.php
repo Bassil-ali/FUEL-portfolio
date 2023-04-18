@@ -18,25 +18,34 @@ class FeatureController extends Controller
     public function store(FeatureRequest $request)
     {
 
-        $itemTitle  = [];
-        $itemDisc   = [];
-        foreach($request->get('feature_title_' . app()->getLocale()) as $indexName=>$name) {
-            foreach(getLanguages() as $index=>$language) {
-                $itemTitle[$indexName] = [
-                    'ar' => $request->get('feature_title_ar')[$indexName] ?? $request->get('feature_title_' . app()->getLocale())[$indexName],
-                    'en' => $request->get('feature_title_en')[$indexName] ?? $request->get('feature_title_' . app()->getLocale())[$indexName],
-                ];
+        if(empty($request->get('feature_title' . app()->getLocale()))) {
 
-                $itemDisc[$indexName] = [
-                    'ar' => $request->get('feature_description_ar')[$indexName] ?? $request->get('feature_description_' . app()->getLocale())[$indexName],
-                    'en' => $request->get('feature_description_en')[$indexName] ?? $request->get('feature_description_' . app()->getLocale())[$indexName],
-                ];
+            saveSetting('feature_title', '');
+            saveSetting('feature_description', '');
+
+        } else {
+
+            $itemTitle  = [];
+            $itemDisc   = [];
+            foreach($request->get('feature_title_' . app()->getLocale()) as $indexName=>$name) {
+                foreach(getLanguages() as $index=>$language) {
+                    $itemTitle[$indexName] = [
+                        'ar' => $request->get('feature_title_ar')[$indexName] ?? $request->get('feature_title_' . app()->getLocale())[$indexName],
+                        'en' => $request->get('feature_title_en')[$indexName] ?? $request->get('feature_title_' . app()->getLocale())[$indexName],
+                    ];
+
+                    $itemDisc[$indexName] = [
+                        'ar' => $request->get('feature_description_ar')[$indexName] ?? $request->get('feature_description_' . app()->getLocale())[$indexName],
+                        'en' => $request->get('feature_description_en')[$indexName] ?? $request->get('feature_description_' . app()->getLocale())[$indexName],
+                    ];
+                }
+
             }
 
+            saveSetting('feature_title', $itemTitle);
+            saveSetting('feature_description', $itemDisc);
         }
 
-        saveSetting('feature_title', $itemTitle);
-        saveSetting('feature_description', $itemDisc);
 
         if(request()->file('image')) {
 

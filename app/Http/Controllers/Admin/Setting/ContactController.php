@@ -16,12 +16,12 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request)
     {
-        saveTransSetting('contact_email', $request->email);
-        saveTransSetting('contact_phone', $request->phone);
-        saveTransSetting('contact_fax', $request->fax);
-        saveTransSetting('contact_address', $request->address);
-        saveTransSetting('contact_commercial_record', $request->commercial_record);
-        saveTransSetting('contact_tax_number', $request->tax_number);
+        saveSetting('contact_email', $request->email);
+        saveSetting('contact_phone', $request->phone);
+        saveSetting('contact_fax', $request->fax);
+        saveSetting('contact_address', $request->address);
+        saveSetting('contact_commercial_record', $request->commercial_record);
+        saveSetting('contact_tax_number', $request->tax_number);
 
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->back();

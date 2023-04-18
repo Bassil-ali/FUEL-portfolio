@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-6 col-md-6 footer-info text-center ">
-            <img src="assets/img/logo2.png" width="150px" alt="logo">
+            <img src="{{ asset('site_assets/img/logo2.png') }}" width="150px" alt="logo">
             <p class="mt-3">
               {!! getTransSetting('system_description', app()->getLocale()) !!}
             </p>

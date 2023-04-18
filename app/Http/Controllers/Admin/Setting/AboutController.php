@@ -18,25 +18,35 @@ class AboutController extends Controller
     public function store(AboutRequest $request)
     {
 
-        $itemTitle  = [];
-        $itemDisc   = [];
-        foreach($request->get('about_title_' . app()->getLocale()) as $indexName=>$name) {
-            foreach(getLanguages() as $index=>$language) {
-                $itemTitle[$indexName] = [
-                    'ar' => $request->get('about_title_ar')[$indexName] ?? $request->get('about_title_' . app()->getLocale())[$indexName],
-                    'en' => $request->get('about_title_en')[$indexName] ?? $request->get('about_title_' . app()->getLocale())[$indexName],
-                ];
+        if(empty($request->get('about_title_' . app()->getLocale()))) {
+            saveSetting('about_title', '');
+            saveSetting('about_description', '');
 
-                $itemDisc[$indexName] = [
-                    'ar' => $request->get('about_description_ar')[$indexName] ?? $request->get('about_description_' . app()->getLocale())[$indexName],
-                    'en' => $request->get('about_description_en')[$indexName] ?? $request->get('about_description_' . app()->getLocale())[$indexName],
-                ];
+            session()->flash('success', __('site.updated_successfully'));
+            return redirect()->back();
+
+        } else {
+
+            $itemTitle  = [];
+            $itemDisc   = [];
+            foreach($request->get('about_title_' . app()->getLocale()) as $indexName=>$name) {
+                foreach(getLanguages() as $index=>$language) {
+                    $itemTitle[$indexName] = [
+                        'ar' => $request->get('about_title_ar')[$indexName] ?? $request->get('about_title_' . app()->getLocale())[$indexName],
+                        'en' => $request->get('about_title_en')[$indexName] ?? $request->get('about_title_' . app()->getLocale())[$indexName],
+                    ];
+
+                    $itemDisc[$indexName] = [
+                        'ar' => $request->get('about_description_ar')[$indexName] ?? $request->get('about_description_' . app()->getLocale())[$indexName],
+                        'en' => $request->get('about_description_en')[$indexName] ?? $request->get('about_description_' . app()->getLocale())[$indexName],
+                    ];
+                }
+
             }
 
+            saveSetting('about_title', $itemTitle);
+            saveSetting('about_description', $itemDisc);
         }
-
-        saveSetting('about_title', $itemTitle);
-        saveSetting('about_description', $itemDisc);
 
         if(request()->file('image')) {
 

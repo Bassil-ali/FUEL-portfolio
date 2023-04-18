@@ -4,7 +4,7 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-11 d-flex align-items-center justify-content-between">
           <a href="{{ url('/') }}" class="logo">
-          	<img src="assets/img/logo.png" alt="" class="img-fluid">
+          	<img src="{{ asset('site_assets/img/logo.png') }}" alt="" class="img-fluid">
           </a>
           <nav id="navbar" class="navbar order-2 order-lg-1">
             <ul>
