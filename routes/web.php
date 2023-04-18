@@ -23,3 +23,15 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('language/{language:code}', [App\Http\Controllers\HomeController::class, 'changeLanguage'])->name('changeLanguage');
+
+Route::get('/c', function() {
+
+   Artisan::call('optimize:clear');
+   Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   Artisan::call('config:cache');
+   Artisan::call('view:clear');
+
+   return "Cleared!";
+
+});
