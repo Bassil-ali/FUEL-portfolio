@@ -28,6 +28,7 @@ Route::get('/c', function() {
 
    Artisan::call('optimize:clear');
    Artisan::call('storage:link');
+   Artisan::call('storage');
    Artisan::call('cache:clear');
    Artisan::call('config:clear');
    Artisan::call('config:cache');
