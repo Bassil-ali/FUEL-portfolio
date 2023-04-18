@@ -12,7 +12,7 @@
         <!-- End About Section -->
 
          <!-- ======= Features Section ======= -->
-        @include('site.index.includes.Features')
+        @include('site.index.includes.features')
         <!-- End Features Section -->
 
         <!-- ======= Testimonials Section ======= -->
