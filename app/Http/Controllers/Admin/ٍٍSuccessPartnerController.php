@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\Partner\PartnerRequest;
-use App\Http\Requests\Admin\Partner\StatusRequest;
-use App\Http\Requests\Admin\Partner\DeleteRequest;
+use App\Http\Requests\Admin\SuccessPartner\PartnerRequest;
+use App\Http\Requests\Admin\SuccessPartner\StatusRequest;
+use App\Http\Requests\Admin\SuccessPartner\DeleteRequest;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Partner;
+use App\Models\SuccessPartner;
 
-class PartnerController extends Controller
+class SuccessPartnerController extends Controller
 {
     public function index()
     {
@@ -18,10 +18,9 @@ class PartnerController extends Controller
             return abort(403);
         }
 
-        return view('admin.partners.index');
+        return view('admin.success_partners.index');
 
     }//end of index
-
     public function data()
     {
         $permissions = [
@@ -30,25 +29,25 @@ class PartnerController extends Controller
             'delete' => permissionAdmin('delete-partners'),
         ];
 
-        $partner = Partner::query();
+        $partner = SuccessPartner::query();
 
         return dataTables()->of($partner)
             ->addColumn('record_select', 'admin.dataTables.record_select')
-            ->addColumn('created_at', fn (Partner $partner) => $partner->created_at->format('Y-m-d'))
-            ->editColumn('title', fn (Partner $partner) => $partner->title)
-            ->editColumn('description', fn (Partner $partner) => str()->limit($partner->description, 10))
-            ->addColumn('admin', fn (Partner $partner) => $partner->admin?->name)
-            ->addColumn('actions', function(Partner $partner) use($permissions) {
-                $routeEdit   = route('admin.partners.edit', $partner->id);
-                $routeDelete = route('admin.partners.destroy', $partner->id);
+            ->addColumn('created_at', fn (SuccessPartner $partner) => $partner->created_at->format('Y-m-d'))
+            ->editColumn('title', fn (SuccessPartner $partner) => $partner->title)
+            ->editColumn('description', fn (SuccessPartner $partner) => str()->limit($partner->description, 10))
+            ->addColumn('admin', fn (SuccessPartner $partner) => $partner->admin?->name)
+            ->addColumn('actions', function(SuccessPartner $partner) use($permissions) {
+                $routeEdit   = route('admin.success_partners.edit', $partner->id);
+                $routeDelete = route('admin.success_partners.destroy', $partner->id);
                 return view('admin.dataTables.actions', compact('permissions', 'routeEdit', 'routeDelete'));
             })
-            ->addColumn('status', function(Partner $partner) use($permissions) {
+            ->addColumn('status', function(SuccessPartner $partner) use($permissions) {
                 $models = $partner;
-                $route  = route('admin.partners.status');
+                $route  = route('admin.success_partners.status');
                 return view('admin.dataTables.status', compact('models', 'permissions'));
             })
-            ->editColumn('image', function(Partner $partner) {
+            ->editColumn('image', function(SuccessPartner $partner) {
                 $models = $partner;
                 return view('admin.dataTables.image', compact('models'));
             })
@@ -64,7 +63,7 @@ class PartnerController extends Controller
             return abort(403);
         }
 
-        return view('admin.partners.create');
+        return view('admin.success_partners.create');
         
     }//end of create
 
@@ -78,21 +77,19 @@ class PartnerController extends Controller
 
         }
 
-        Partner::create($requestData);
+        SuccessPartner::create($requestData);
 
         session()->flash('success', __('site.added_successfully'));
-        return redirect()->route('admin.partners.index');
+        return redirect()->route('admin.success_partners.index');
 
     }//end of store
 
-    public function edit(Partner $partner)
+    public function edit(SuccessPartner $successpartner)
     {
-        if(!permissionAdmin('update-partners')) {
-            return abort(403);
-        }
         
-
-        return view('admin.partners.edit', compact('partner'));
+        
+        dd($successpartner);
+        return view('admin.success_partners.edit', compact('partner'));
 
     }//end of edit
 
@@ -109,11 +106,11 @@ class PartnerController extends Controller
         $partner->update($requestData);
 
         session()->flash('success', __('site.updated_successfully'));
-        return redirect()->route('admin.partners.index');
+        return redirect()->route('admin.success_partners.index');
         
     }//end of update
 
-    public function destroy(Partner $partner)
+    public function destroy(SuccessPartner $partner)
     {
         Storage::disk('public')->delete($partner->image);
         $partner->delete();
@@ -126,9 +123,9 @@ class PartnerController extends Controller
     public function bulkDelete(DeleteRequest $request)
     {
         $ides   = request()->ids;
-        $images = Partner::find($ides)->pluck('image')->toArray();
+        $images = SuccessPartner::find($ides)->pluck('image')->toArray();
         Storage::disk('public')->delete($images);
-        Partner::destroy($ides);
+        SuccessPartner::destroy($ides);
 
         session()->flash('success', __('site.deleted_successfully'));
         return response(__('site.deleted_successfully'));
@@ -137,7 +134,7 @@ class PartnerController extends Controller
 
     public function status(StatusRequest $request)
     {
-        $partner = Partner::find($request->id);
+        $partner = SuccessPartner::find($request->id);
         $partner->update(['status' => !$partner->status]);
 
         session()->flash('success', __('site.updated_successfully'));

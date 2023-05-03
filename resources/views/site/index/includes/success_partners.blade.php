@@ -9,14 +9,14 @@
     <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
       <div class="swiper-wrapper">
 
-        @foreach($partners as $partner)
+        @foreach($success_partners as $success_partner)
 
         <div class="swiper-slide">
           <div class="testimonial-item">
-            <h3>{{ $partner->title }}</h3>
-            <img src="{{ $partner->image_path }}" width="9%" alt="">
+            <h3>{{ $success_partner->title }}</h3>
+            <img src="{{ $success_partner->image_path }}" width="9%" alt="">
             <p>
-              {!! $partner->description !!}
+              {!! $success_partner->description !!}
             </p>
           </div>
         </div><!-- End testimonial item -->

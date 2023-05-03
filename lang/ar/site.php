@@ -11,7 +11,7 @@ return array(
     'languages'       => 'اللغات',
     'sliders'         => 'سلايدر',
     'partners'        => 'موردينا',
-    'success_partners'=> 'العملاء الناجحين',
+    'success_partners'=> 'الشركاء الناجحين',
 
     'logout'          => 'تسجيل خروج',
     'login'           => 'تسجيل دخول',

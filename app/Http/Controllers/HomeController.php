@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Language;
 use App\Models\Slider;
 use App\Models\Partner;
+use App\Models\SuccessPartner;
 
 class HomeController extends Controller
 {
@@ -13,8 +14,10 @@ class HomeController extends Controller
     {
         $sliders  = Slider::all();
         $partners = Partner::active()->get();
+        $success_partners = SuccessPartner::active()->get();
+        
 
-        return view('site.index.index', compact('sliders', 'partners'));
+        return view('site.index.index', compact('sliders', 'partners','success_partners'));
 
     }//end of index
 

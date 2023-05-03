@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Managements\LanguageController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\SuccessPartnerController;
 
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Setting\WebsitController;
@@ -128,6 +129,18 @@ Route::middleware([
     Route::resource('partners', PartnerController::class)->except('show');
     Route::controller(PartnerController::class)
         ->prefix('partners')->name('partners.')
+        ->group(function () {
+
+            Route::get('data', 'data')->name('data');
+            Route::post('status', 'status')->name('status');
+            Route::post('bulk_delete', 'bulkDelete')->name('bulk_delete');
+
+        });
+
+    //success partners
+    Route::resource('success_partners', SuccessPartnerController::class)->except('show');
+    Route::controller(SuccessPartnerController::class)
+        ->prefix('success_partners')->name('success_partners.')
         ->group(function () {
 
             Route::get('data', 'data')->name('data');

@@ -33,6 +33,13 @@
             </a>
         </li>
 
+         <li>
+            <a class="app-menu__item {{ request()->is('*success*') ? 'active' : '' }}" href="{{ route('admin.success_partners.index') }}">
+                <i class="app-menu__icon fa fa-handshake"></i> 
+                <span class="app-menu__label">@lang('site.success_partners')</span>
+            </a>
+        </li>
+
 
         <li class="treeview {{ request()->is('*managements*') ? 'is-expanded' : '' }}">
             <a class="app-menu__item" href="#" data-toggle="treeview">

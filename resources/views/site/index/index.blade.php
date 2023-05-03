@@ -24,7 +24,7 @@
         <!-- End facts Section -->
 
          <!-- ======= Testimonials Section ======= -->
-        @include('site.index.includes.partners')
+        @include('site.index.includes.success_partners')
         <!-- End testimonials Section -->
 
         <!-- ======= Contact Section ======= -->
