@@ -9,5 +9,6 @@ return [
     'about'       => 'من نحن',
     'achievement' => 'الإنجازات',
     'feature'     => 'ميزة',
+    'branches'    => 'فروعنا'
 
 ];

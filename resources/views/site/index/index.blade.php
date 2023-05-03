@@ -23,6 +23,14 @@
         @include('site.index.includes.facts')    
         <!-- End facts Section -->
 
+         <!-- ======= Testimonials Section ======= -->
+        @include('site.index.includes.partners')
+        <!-- End testimonials Section -->
+
+        <!-- ======= Contact Section ======= -->
+        @include('site.index.includes.branches')
+        <!-- End contact Section -->
+
         <!-- ======= Contact Section ======= -->
         @include('site.index.includes.contact')
         <!-- End contact Section -->

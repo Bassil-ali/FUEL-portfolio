@@ -12,6 +12,8 @@ return array(
     'languages'       => 'Languages',
     'sliders'         => 'Sliders',
     'partners'        => 'Suppliers',
+    'success_partners'=> 'Success partners',
+    
 
     'logout'          => 'Logout',
     'login'           => 'Login',

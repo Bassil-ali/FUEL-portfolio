@@ -800,13 +800,23 @@ border-radius: 10px;
 /* Testimonials Section
 --------------------------------*/
 #testimonials {
-  background: linear-gradient(#ea2225ca, #ef6423d8), url(../img/hero-carousel/02.jpg) fixed center center;
+  background: linear-gradient(#ea2225ca, #ef6423d8), url(../img/car.jpg) fixed center center;
   background-size: cover;
   padding: 80px 0;
 }
 #testimonials .section-headline h2::after {
-  background: linear-gradient(#292967, #292967cb), url(../img/hero-carousel/01.jpg) center center fixed;
+  background: linear-gradient(#292967, #292967cb), url(../img/car.jpg) center center fixed;
 }
+
+#success_partners {
+  background: linear-gradient(#292967, #292967cb), url(../img/about-1.jpg) fixed center center;
+  background-size: cover;
+  padding: 80px 0;
+}
+#success_partners .section-headline h2::after {
+  background: linear-gradient(#292967, #292967cb), url(../img/about-1.jpg) center center fixed;
+}
+
 #testimonials .section-header {
   margin-bottom: 40px;
 }
@@ -853,6 +863,56 @@ border-radius: 10px;
   border: 1px solid rgb(228,174,107);
 }
 #testimonials .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--mainColor);
+}
+
+
+#success_partners .section-header {
+  margin-bottom: 40px;
+}
+#success_partners .testimonials-carousel, #testimonials .testimonials-slider {
+  overflow: hidden;
+}
+#success_partners .testimonial-item {
+  text-align: center;
+}
+#success_partners .testimonial-item .testimonial-img {
+  width: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  margin: 0 auto;
+}
+#success_partners .testimonial-item h3 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px 0 8px 0;
+  color: rgb(255, 255, 255);
+}
+#success_partners .testimonial-item p {
+  color: rgb(239, 239, 239);
+}
+
+#success_partners .testimonial-item p {
+  font-size: 18px;
+  margin: 0 auto 15px auto;
+}
+@media (min-width: 992px) {
+  #success_partners .testimonial-item p {
+    width: 80%;
+  }
+}
+#success_partners .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+#success_partners .swiper-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid rgb(228,174,107);
+}
+#success_partners .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--mainColor);
 }
 

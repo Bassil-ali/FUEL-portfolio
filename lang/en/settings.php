@@ -9,5 +9,6 @@ return [
     'about'       => 'About Us',
     'achievement' => 'Achievement',
     'feature'     => 'Feature',
+    'branches'    => 'branches'
 
 ];
