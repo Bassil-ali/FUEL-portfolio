@@ -13,7 +13,7 @@
 
         <div class="swiper-slide">
           <div class="testimonial-item">
-            <h3>{{ $partner->name }}</h3>
+            <h3>{{ $partner->title }}</h3>
             <img src="{{ $partner->image_path }}" width="9%" alt="">
             <p>
               {!! $partner->description !!}

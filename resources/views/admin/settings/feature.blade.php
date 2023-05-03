@@ -23,7 +23,7 @@
 
                 <div class="tile shadow">
 
-                    @include('admin.dataTables.image_privew', ['imagePath' => asset('storage/' . getSetting('feature_image'))])
+                    @include('admin.dataTables.image_privew', ['imagePath' => asset('storage/app/public/' . getSetting('feature_image'))])
 
                 </div><!-- end of tile -->
 

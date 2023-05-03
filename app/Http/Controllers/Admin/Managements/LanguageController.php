@@ -94,9 +94,9 @@ class LanguageController extends Controller
             return abort(403);
         }
 
-        return view('admin.managements.languages.edit', compact('slider'));
+        return view('admin.managements.languages.index', compact('language'));
 
-    }//end of edit
+    }//end of edit.
 
     public function update(LanguageRequest $request, Language $language)
     {

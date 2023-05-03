@@ -16,12 +16,12 @@ class AchievementController extends Controller
 
     public function store(AchievementRequest $request)
     {
-        if(empty($request->get('achievement_name_' . app()->getLocale()))) {
+        // if(empty($request->get('achievement_name_' . app()->getLocale()))) {
 
-            saveSetting('achievement_name', '');
-            saveSetting('achievement_count', '');
+        //     saveSetting('achievement_name', '');
+        //     saveSetting('achievement_count', '');
 
-        } else {
+        // } else {
 
             $itemName  = [];
             $itemCount = [];
@@ -38,7 +38,7 @@ class AchievementController extends Controller
                     ];
                 }
 
-            }
+            // }
 
             saveSetting('achievement_name', $itemName);
             saveSetting('achievement_count', $itemCount);

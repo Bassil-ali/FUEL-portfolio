@@ -5,11 +5,11 @@ return [
     'home'      => 'الرئيسية',
     'about_us'  => 'من نحن',
 
-    'testimonials'  => 'موردينا و شركائنا',
+    'testimonials'  =>'موردينا',
     'facts'  => 'انجازاتنا',
     'contact'  => 'اتصل بنا',
 
-    'english'  => 'الإنجليزية',
-    'arabic'   => 'العربيه',
+    'english'  =>'English ',
+    'arabic'   => 'Arabic ',
 
 ];

@@ -46,11 +46,7 @@
                         <i class="icon fa fa-users"></i>@lang('site.admins')
                     </a>
                 </li>
-                <li>
-                    <a class="treeview-item {{ request()->is('*languages*') ? 'active' : '' }}" href="{{ route('admin.managements.languages.index') }}">
-                        <i class="icon fa fa-language"></i>@lang('site.languages')
-                    </a>
-                </li>
+                
             </ul>
         </li>
 

@@ -12,7 +12,7 @@
     <div class="row d-flex align-items-center">
       <div class="col-md-5 col-12" data-aos="fade-up" data-aos-delay="100">
         <div class="img-sec position-relative ">
-          <img src="{{ asset('storage/' . getSetting('about_image')) }}" class="img-fluid " height="200px" alt="">
+          <img src="{{ asset('storage/app/public/' . getSetting('about_image')) }}" class="img-fluid " height="200px" alt="">
         </div>
       </div>
       <div class="col-md-7 col-12 text-right">

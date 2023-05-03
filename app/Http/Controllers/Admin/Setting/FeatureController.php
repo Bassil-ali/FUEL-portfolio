@@ -18,12 +18,13 @@ class FeatureController extends Controller
     public function store(FeatureRequest $request)
     {
 
-        if(empty($request->get('feature_title' . app()->getLocale()))) {
+       
+//         if(empty($request->get('feature_title' . app()->getLocale()))) {
+//  dd($request);
+//             saveSetting('feature_title', '');
+//             saveSetting('feature_description', '');
 
-            saveSetting('feature_title', '');
-            saveSetting('feature_description', '');
-
-        } else {
+//         } else {
 
             $itemTitle  = [];
             $itemDisc   = [];
@@ -44,7 +45,7 @@ class FeatureController extends Controller
 
             saveSetting('feature_title', $itemTitle);
             saveSetting('feature_description', $itemDisc);
-        }
+        // }
 
 
         if(request()->file('image')) {

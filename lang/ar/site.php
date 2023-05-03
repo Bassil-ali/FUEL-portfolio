@@ -10,7 +10,7 @@ return array(
     'managements'     => 'الإدارات',
     'languages'       => 'اللغات',
     'sliders'         => 'سلايدر',
-    'partners'        => 'شركائنا',
+    'partners'        => 'موردينا',
 
     'logout'          => 'تسجيل خروج',
     'login'           => 'تسجيل دخول',
@@ -58,7 +58,7 @@ return array(
     'description' => 'الوصف',
     'phone'       => 'رقم الهاتف',
     'email'       => 'الايميل',
-    'fax'         => 'فاكس',
+    'fax'         => 'واتساب',
     'address'     => 'العنوان',
     'copyright'   => '&copy; جميع الحقوق محفوظة لصالح <strong>شركة فيول</strong>',
     'connect_with_us'  => 'تواصل معنا',

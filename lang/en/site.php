@@ -11,7 +11,7 @@ return array(
     'managements'     => 'Managements',
     'languages'       => 'Languages',
     'sliders'         => 'Sliders',
-    'partners'        => 'Partners',
+    'partners'        => 'Suppliers',
 
     'logout'          => 'Logout',
     'login'           => 'Login',
@@ -74,7 +74,7 @@ return array(
     'description' => 'Description',
     'phone'       => 'Phone',
     'email'       => 'Email',
-    'fax'         => 'Fax',
+    'fax'         => 'WhatsApp ',
     'address'     => 'Address',
     'copyright'   => '&copy; All rights reserved to <strong>Fuel Company</strong>',
     'connect_with_us'  => 'Connect with us',

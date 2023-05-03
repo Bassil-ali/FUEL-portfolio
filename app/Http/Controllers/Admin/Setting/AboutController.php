@@ -18,14 +18,14 @@ class AboutController extends Controller
     public function store(AboutRequest $request)
     {
 
-        if(empty($request->get('about_title_' . app()->getLocale()))) {
-            saveSetting('about_title', '');
-            saveSetting('about_description', '');
+        // if(empty($request->get('about_title_' . app()->getLocale()))) {
+        //     saveSetting('about_title', '');
+        //     saveSetting('about_description', '');
 
-            session()->flash('success', __('site.updated_successfully'));
-            return redirect()->back();
+        //     session()->flash('success', __('site.updated_successfully'));
+        //     return redirect()->back();
 
-        } else {
+        // } else {
 
             $itemTitle  = [];
             $itemDisc   = [];
@@ -46,7 +46,7 @@ class AboutController extends Controller
 
             saveSetting('about_title', $itemTitle);
             saveSetting('about_description', $itemDisc);
-        }
+        // }
 
         if(request()->file('image')) {
 

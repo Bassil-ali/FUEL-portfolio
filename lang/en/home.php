@@ -5,11 +5,11 @@ return [
     'home'      => 'Home',
     'about_us'  => 'About Us',
 
-    'testimonials'  => 'Testimonials',
-    'facts'         => 'Facts',
+    'testimonials'  => 'Suppliers',
+    'facts'         => 'achievement ',
     'contact'       => 'Contact Us',
 
-    'english'  => 'English',
-    'arabic'   => 'Arabic',
+    'english'  => 'الإنجليزية ',
+    'arabic'   => 'العربية ',
 
 ];
