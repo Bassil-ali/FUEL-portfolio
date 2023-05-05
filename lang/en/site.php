@@ -13,6 +13,8 @@ return array(
     'sliders'         => 'Sliders',
     'partners'        => 'Suppliers',
     'success_partners'=> 'Success partners',
+    'location'        => 'Location',
+    
     
 
     'logout'          => 'Logout',

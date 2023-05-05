@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Setting\ContactController;
 use App\Http\Controllers\Admin\Setting\AchievementController;
 use App\Http\Controllers\Admin\Setting\AboutController;
 use App\Http\Controllers\Admin\Setting\FeatureController;
+use App\Http\Controllers\Admin\Setting\BranchController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
@@ -107,6 +108,13 @@ Route::middleware([
 
             Route::get('feature', 'index')->name('feature');
             Route::post('feature/store', 'store')->name('feature.store');
+
+        });
+
+        Route::controller(BranchController::class)->group(function () {
+
+            Route::get('branch', 'index')->name('branch');
+            Route::post('branch/store', 'store')->name('branch.store');
 
         });
 

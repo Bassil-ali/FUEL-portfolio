@@ -3,33 +3,24 @@
 @section('content')
 
     <div>
-        <h2>@lang('settings.feature')</h2>
+        <h2>@lang('settings.branch')</h2>
     </div>
 
     <ul class="breadcrumb mt-2">
         <li class="breadcrumb-item"><a class="back-page" href="{{ route('admin.index') }}">@lang('site.home')</a></li>
         <li class="breadcrumb-item">@lang('settings.settings')</li>
-        <li class="breadcrumb-item">@lang('settings.feature')</li>
+        <li class="breadcrumb-item">@lang('settings.branch')</li>
     </ul>
 
 
-	<form method="post" action="{{ route('admin.settings.feature.store') }}" enctype="multipart/form-data">
+	<form method="post" action="{{ route('admin.settings.branch.store') }}" enctype="multipart/form-data">
 	    @csrf
 	    @method('post')
 
 	    <div class="row">
 
-            <div class="col-12 col-md-4">
-
-                <div class="tile shadow">
-
-                    @include('admin.dataTables.image_privew', ['imagePath' => asset('storage/' . getSetting('feature_image'))])
-
-                </div><!-- end of tile -->
-
-            </div><!-- end of col -->
-
-            <div class="col-12 col-md-8">
+           
+            <div class="col-12">
 
                 <div class="tile shadow">
 
@@ -49,9 +40,9 @@
 				              {{--email--}}
 				              <div id="append-item-{{ $language->code }}">
 
-				              	@if(old('feature_name_' . $language->code))
+				              	@if(old('branch_name_' . $language->code))
 
-				                  	@foreach(old('feature_name_' . $language->code) as $indexName=>$name)
+				                  	@foreach(old('branch_name_' . $language->code) as $indexName=>$name)
 				                  	{{-- @dd($name); --}}
 
 				                  		<div class="row mt-2">
@@ -64,14 +55,14 @@
 											<div class="col-10 col-md col-5">
 										        <div class="form-group">
 										            <label>count <span class="text-danger">*</span></label>
-										            <input type="text" name="feature_count_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('feature_count'), true)[$indexName][$language->code] ?? '' }}" required>
+										            <input type="text" name="branch_count_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('branch_count'), true)[$indexName][$language->code] ?? '' }}" required>
 										        </div>
 											</div>
 
 											<div class="col-12 col-md col-5">
 												<div class="form-group">
 										            <label>name <span class="text-danger">*</span></label>
-										            <input type="text" name="feature_name_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('feature_name'), true)[$indexName][$language->code] ?? '' }}" required>
+										            <input type="text" name="branch_name_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('branch_name'), true)[$indexName][$language->code] ?? '' }}" required>
 										        </div>
 											</div>
 										</div>
@@ -80,11 +71,10 @@
 
 				              	@else
 
-				                  	@if(json_decode(getSetting('feature_title'), true))
+				                  	@if(json_decode(getSetting('branch_title'), true))
 
-				                  		{{-- @dd(json_decode(getSetting('feature_description'), true)) --}}
 
-				                      	@foreach(json_decode(getSetting('feature_title'), true) as $indexName=>$name)
+				                      	@foreach(json_decode(getSetting('branch_title'), true) as $indexName=>$name)
 
 				                      		<div class="row mt-2">
 												<div class="col-2 col-md-1">
@@ -96,12 +86,17 @@
 												<div class="col-10 col-md col-5">
 											        <div class="form-group">
 											            <label>@lang('site.title') <span class="text-danger">*</span></label>
-											            <input type="text" name="feature_title_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('feature_title'), true)[$indexName][$language->code] ?? '' }}">
+											            <input type="text" name="branch_title_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('branch_title'), true)[$indexName][$language->code] ?? '' }}">
 											        </div>
 
 													<div class="form-group">
-				                        				<label>@lang('site.description') <span class="text-danger">*</span></label>
-				                        				<textarea id="description-{{ $language->code }}" class="form-control" name="feature_description_{{ $language->code }}[]" rows="5">{{ json_decode(getSetting('feature_description'), true)[$indexName][$language->code] ?? '' }}</textarea>
+				                        				<label>@lang('site.location') <span class="text-danger">*</span></label>
+				                        				<input type="text" class="form-control" name="branch_location_{{ $language->code }}[]" value="{{ json_decode(getSetting('branch_location'), true)[$indexName][$language->code] ?? '' }}">
+											        </div>
+
+													 <div class="form-group">
+											            <label>@lang('site.phone') <span class="text-danger">*</span></label>
+											            <input type="text" name="branch_phone_{{ $language->code }}[]" class="form-control" value="{{ json_decode(getSetting('branch_phone'), true)[$indexName][$language->code] ?? '' }}">
 											        </div>
 
 												</div>
@@ -158,11 +153,15 @@
 							<div class="col-10 col-md col-5">
 						        <div class="form-group">
 						            <label>@lang('site.title') <span class="text-danger">*</span></label>
-						            <input type="text" name="feature_title_${lang}[]" class="form-control" required>
+						            <input type="text" name="branch_title_${lang}[]" class="form-control" required>
 						        </div>
 								<div class="form-group">
-                    				<label>@lang('site.description') <span class="text-danger">*</span></label>
-                    				<textarea id="feature-description-${lang}" class="form-control" name="feature_description_${lang}[]" rows="5"></textarea>
+                    				<label>@lang('site.location') <span class="text-danger">*</span></label>
+                    				<input type="text" class="form-control" name="branch_location_${lang}[]" required></input>
+						        </div>
+								<div class="form-group">
+						            <label>@lang('site.phone') <span class="text-danger">*</span></label>
+						            <input type="text" name="branch_phone_${lang}[]" class="form-control" required>
 						        </div>
 							</div>
 						</div>`;

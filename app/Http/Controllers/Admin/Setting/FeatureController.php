@@ -17,7 +17,7 @@ class FeatureController extends Controller
 
     public function store(FeatureRequest $request)
     {
-
+ 
        
 //         if(empty($request->get('feature_title' . app()->getLocale()))) {
 //  dd($request);

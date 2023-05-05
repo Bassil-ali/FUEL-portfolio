@@ -809,12 +809,12 @@ border-radius: 10px;
 }
 
 #success_partners {
-  background: linear-gradient(#292967, #292967cb), url(../img/about-1.jpg) fixed center center;
+  background: linear-gradient(#292967, #292967cb), url(../img/partner.jpeg) fixed center center;
   background-size: cover;
   padding: 80px 0;
 }
 #success_partners .section-headline h2::after {
-  background: linear-gradient(#292967, #292967cb), url(../img/about-1.jpg) center center fixed;
+  background: linear-gradient(#292967, #292967cb), url(../img/partner.jpeg) center center fixed;
 }
 
 #testimonials .section-header {

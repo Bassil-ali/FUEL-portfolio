@@ -34,7 +34,7 @@
         </li>
 
          <li>
-            <a class="app-menu__item {{ request()->is('*success*') ? 'active' : '' }}" href="{{ route('admin.success_partners.index') }}">
+            <a class="app-menu__item {{ request()->is('*succe*') ? 'active' : '' }}" href="{{ route('admin.success_partners.index') }}">
                 <i class="app-menu__icon fa fa-handshake"></i> 
                 <span class="app-menu__label">@lang('site.success_partners')</span>
             </a>
@@ -90,6 +90,11 @@
                 <li>
                     <a class="treeview-item {{ request()->is('*feature*') ? 'active' : '' }}" href="{{ route('admin.settings.feature') }}">
                         <i class="icon fa fa-tags"></i>@lang('settings.feature')
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item {{ request()->is('*branch*') ? 'active' : '' }}" href="{{ route('admin.settings.branch') }}">
+                        <i class="icon fa fa-tags"></i>@lang('settings.branch')
                     </a>
                 </li>
             </ul>

@@ -84,16 +84,14 @@ class SuccessPartnerController extends Controller
 
     }//end of store
 
-    public function edit(SuccessPartner $successpartner)
+    public function edit(SuccessPartner $successPartner)
     {
-        
-        
-        dd($successpartner);
+        $partner = $successPartner;
         return view('admin.success_partners.edit', compact('partner'));
 
     }//end of edit
 
-    public function update(PartnerRequest $request, Partner $partner)
+    public function update(PartnerRequest $request, SuccessPartner $partner)
     {
         $requestData = request()->except('image');
         if(request()->file('image')) {
@@ -110,8 +108,9 @@ class SuccessPartnerController extends Controller
         
     }//end of update
 
-    public function destroy(SuccessPartner $partner)
+    public function destroy(SuccessPartner $successPartner)
     {
+        $partner = $successPartner;
         Storage::disk('public')->delete($partner->image);
         $partner->delete();
 

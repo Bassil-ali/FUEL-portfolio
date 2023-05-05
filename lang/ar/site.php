@@ -11,7 +11,8 @@ return array(
     'languages'       => 'اللغات',
     'sliders'         => 'سلايدر',
     'partners'        => 'موردينا',
-    'success_partners'=> 'الشركاء الناجحين',
+    'success_partners'=> 'شركاء النجاح',
+    'location'        => 'الموقع',
 
     'logout'          => 'تسجيل خروج',
     'login'           => 'تسجيل دخول',
@@ -52,7 +53,7 @@ return array(
     'loading'     => 'تحميل ...',
     'show'        => 'عرض',
 
-    'title'       => 'العناون',
+    'title'       => 'العنوان',
     'name'        => 'الاسم',
     'status'      => 'الحالة',
     'image'       => 'الصوره',
