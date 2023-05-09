@@ -91,8 +91,9 @@ class SuccessPartnerController extends Controller
 
     }//end of edit
 
-    public function update(PartnerRequest $request, SuccessPartner $partner)
+    public function update(PartnerRequest $request, SuccessPartner $successPartner)
     {
+        $partner = $successPartner;
         $requestData = request()->except('image');
         if(request()->file('image')) {
 
@@ -111,6 +112,7 @@ class SuccessPartnerController extends Controller
     public function destroy(SuccessPartner $successPartner)
     {
         $partner = $successPartner;
+       
         Storage::disk('public')->delete($partner->image);
         $partner->delete();
 

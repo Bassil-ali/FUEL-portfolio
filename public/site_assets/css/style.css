@@ -795,6 +795,61 @@ border-radius: 10px;
     font-size: 20px;
   }
 }
+/* our-branches
+--------------------------------*/
+#our-branches{
+  background: linear-gradient(#292967, #292967cb), url(../img/car.jpg) center center fixed;
+  padding: 80px 0;
+}
+#our-branches .section-headline h2{
+  color: #fff;
+}
+#our-branches .nav-tabs .nav-item{
+cursor: pointer;
+text-align: center;
+}
+#our-branches .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+cursor: pointer;
+}
+#our-branches h4{
+  margin-bottom: 5px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+}
+#our-branches .active h4 {
+  color: #EF6423;
+}
+#our-branches .info-box {
+    color: #444444;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(214, 215, 216, 0.1);
+    padding: 30px 0 32px 0;
+    border-radius: 4px;
+    background: #ffffff4a;
+}
+
+#our-branches .info-box h3  , #our-branches .info-box p   , #our-branches .info-box a {
+color: #fff;
+}
+#our-branches .info-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+#our-branches .info-box p {
+  line-height: 24px;
+  font-size: 14px;
+}
+#our-branches .info-box i {
+  font-size: 33px;
+  color: #EF6423;
+}
+@media (max-width: 600px) {
+  #our-branches h4{
+    font-size: 14px;
+  }
+}
 
 
 /* Testimonials Section

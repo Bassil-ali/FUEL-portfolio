@@ -13,6 +13,7 @@ return array(
     'partners'        => 'موردينا',
     'success_partners'=> 'شركاء النجاح',
     'location'        => 'الموقع',
+    'locations'       => 'عنواننا',
 
     'logout'          => 'تسجيل خروج',
     'login'           => 'تسجيل دخول',

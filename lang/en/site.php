@@ -14,6 +14,7 @@ return array(
     'partners'        => 'Suppliers',
     'success_partners'=> 'Success partners',
     'location'        => 'Location',
+    'locations'       => 'our location',
     
     
 
